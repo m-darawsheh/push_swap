@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_add_back.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:24:01 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/04 18:44:23 by mdarawsh         ###   ########.fr       */
+/*   Created: 2024/11/04 17:23:50 by mdarawsh          #+#    #+#             */
+/*   Updated: 2024/11/04 17:30:30 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include "push_swap.h"
 
 
-#include "push_swap.h"
-
-
-int main (int   argc, char    **argv)
+void ft_add_back(t_node **head, int data)
 {
-    t_node *head = NULL;
-    // t_node *b;
-    if (argc < 3)
-        return (0);  
-    parse_arg(argc, argv, &head);
-    while (head)
-    {
-        printf("%d\n", head->data);
-        head = head->next;
-    }
-    printf("SUCCESS!\n");
+    t_node *new;
+    t_node *temp;
+    new = malloc(sizeof(t_node));
+    if (!new)
+        free_protiction(*head);
+    new->data = data;
+    new->next = NULL;
+    temp = *head;
+    while (temp->next)
+        temp = temp->next;
+    temp->next = new;
+    new->prev = temp;
 }

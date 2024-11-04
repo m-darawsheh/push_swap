@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_if_max_min.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:24:01 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/04 18:44:23 by mdarawsh         ###   ########.fr       */
+/*   Created: 2024/11/04 17:23:37 by mdarawsh          #+#    #+#             */
+/*   Updated: 2024/11/04 18:43:53 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include "push_swap.h"
 
-
-#include "push_swap.h"
-
-
-int main (int   argc, char    **argv)
+void check_if_max_min(int argc, char *argv[])
 {
-    t_node *head = NULL;
-    // t_node *b;
-    if (argc < 3)
-        return (0);  
-    parse_arg(argc, argv, &head);
-    while (head)
+    int i;
+
+    i = 1;
+    while (i < argc)
     {
-        printf("%d\n", head->data);
-        head = head->next;
+        if (my_strlen(argv[i]) > 10)
+        {
+            printf("ERROR max or min!\n");
+            exit(0);
+        }
+        if (my_atoi(argv[i]) > 2147483647 || my_atoi(argv[i]) < -2147483648)
+        {
+            printf("ERROR max or min!\n");
+            exit(0);
+        }
+        i++;
     }
-    printf("SUCCESS!\n");
 }

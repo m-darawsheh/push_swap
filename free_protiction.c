@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_protiction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:24:01 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/04 18:44:23 by mdarawsh         ###   ########.fr       */
+/*   Created: 2024/11/04 17:23:46 by mdarawsh          #+#    #+#             */
+/*   Updated: 2024/11/04 17:29:46 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include "push_swap.h"
 
-
-#include "push_swap.h"
-
-
-int main (int   argc, char    **argv)
+void free_protiction(t_node *node)
 {
-    t_node *head = NULL;
-    // t_node *b;
-    if (argc < 3)
-        return (0);  
-    parse_arg(argc, argv, &head);
-    while (head)
+    t_node *temp;
+    while (node)
     {
-        printf("%d\n", head->data);
-        head = head->next;
+        temp = node;
+        node = node->next;
+        free(temp);
     }
-    printf("SUCCESS!\n");
+    exit(0);
 }
+

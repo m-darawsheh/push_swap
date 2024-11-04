@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha_edit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:24:01 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/04 18:44:23 by mdarawsh         ###   ########.fr       */
+/*   Created: 2024/11/04 17:38:27 by mdarawsh          #+#    #+#             */
+/*   Updated: 2024/11/04 18:55:03 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "push_swap.h"
 
-
-int main (int   argc, char    **argv)
+int	ft_isalpha_edit(char *c)
 {
-    t_node *head = NULL;
-    // t_node *b;
-    if (argc < 3)
-        return (0);  
-    parse_arg(argc, argv, &head);
-    while (head)
+    int i;
+    i = 0;
+    while (c[i])
     {
-        printf("%d\n", head->data);
-        head = head->next;
+        if ( c[i] > '9' && c[i] < '0'
+            && c[i] != '+' && c[i] != '-')
+            return (1);
+        i++;
     }
-    printf("SUCCESS!\n");
+    return (0);
 }
