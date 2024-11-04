@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib/libft.h"
+#include <stdbool.h>
 
 
 typedef struct t_node
@@ -15,24 +16,49 @@ typedef struct t_node
 
 
 ///////       ** new function **           ///////
+bool check_rubbish_sign(const char *nptr)
+{
+    int i;
+
+    i = 0;
+    if (nptr[i] == '-')
+        i++;
+    while (nptr[i])
+    {
+        if (nptr[i] == '-' || nptr[i] == '+')
+        {
+            return (true);
+        }
+        i++;
+    }
+}
+
+///////       ** new function **           ///////
 int	my_atoi(const char *nptr)
 {
 	int	i;
 	int	result;
 	int	sign;
+    bool is_rubbish;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	if (nptr[i] == '-')
+    is_rubbish = false;
+
+
+
+
+    is_rubbish = check_rubbish_sign(nptr);
+    if (is_rubbish)
+    {
+        printf("ERROR rubbish sign!\n");
+        exit(0);
+    }
+    if (nptr[i] == '-')
 	{
 		sign *= -1;
 		i++;
-	}
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		printf("ERROR!\n");
-		exit(0);
 	}
 	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
 	{
@@ -107,7 +133,7 @@ void check_if_char(int argc, char *argv[])
     {
         if (ft_isalpha_edit(argv[i]))
         {
-            printf("ERROR!\n");
+            printf("ERROR char!\n");
             exit(0);
         }
         i++;
@@ -128,7 +154,7 @@ void check_if_duplicate(int argc, char *argv[])
         {
             if (i != j && my_atoi(argv[i]) == my_atoi(argv[j]))
             {
-                printf("ERROR!\n");
+                printf("ERROR duplicate!\n");
                 exit(0);
             }
             j++;
@@ -147,7 +173,7 @@ void check_if_max_min(int argc, char *argv[])
     {
         if (my_atoi(argv[i]) > 2147483647 || my_atoi(argv[i]) < -2147483648)
         {
-            printf("ERROR!\n");
+            printf("ERROR max or min!\n");
             exit(0);
         }
         i++;
@@ -159,9 +185,9 @@ void parse_arg(int argc, char *argv[], t_node **head)
     int i;
     // function check argv is { char[done] or  duplicate[done] or max and min number[done]}
 
+    check_if_char(argc, argv);
     check_if_duplicate(argc, argv);
     check_if_max_min(argc, argv);
-    check_if_char(argc, argv);
 
     i = 1;
     while (i < argc)
