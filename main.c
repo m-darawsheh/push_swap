@@ -118,7 +118,7 @@ int	ft_isalpha_edit(char *c)
     i = 0;
     while (c[i])
     {
-        if ((c[i] > 64 && c[i] < 91) || (c[i] > 96 && c[i] < 123))
+        if ( c[i] > '9' || c[i] < '0')
         {
             return (1);
         }
