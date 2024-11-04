@@ -21,7 +21,7 @@ bool check_rubbish_sign(const char *nptr)
     int i;
 
     i = 0;
-    if (nptr[i] == '-')
+    if (nptr[i] == '-' || nptr[i] == '+')
         i++;
     while (nptr[i])
     {
@@ -60,6 +60,8 @@ int	my_atoi(const char *nptr)
 		sign *= -1;
 		i++;
 	}
+    if (nptr[i] == '+')
+        i++;
 	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		result *= 10;
