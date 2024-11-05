@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: hamzah <hamzah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:24:08 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/04 18:45:56 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/11/05 22:49:30 by hamzah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 long	my_atoi(const char *nptr)
 {
-	int	i;
+	int		i;
+	int		sign;
 	long	result;
-	int	sign;
-    bool is_rubbish;
+	bool	is_rubbish;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-    is_rubbish = false;
-
-
-
-
-    is_rubbish = check_rubbish_sign(nptr);
-    if (is_rubbish)
-    {
-        printf("ERROR rubbish sign!\n");
-        exit(0);
-    }
-    if (nptr[i] == '-' || nptr[i] == '+')
+	is_rubbish = false;
+	is_rubbish = check_rubbish_sign(nptr);
+	if (is_rubbish)
+	{
+		printf("ERROR rubbish sign!\n");
+		exit(0);
+	}
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
 			sign *= -1;
@@ -47,4 +43,3 @@ long	my_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
-
