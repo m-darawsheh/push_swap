@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_protiction.c                                  :+:      :+:    :+:   */
+/*   free_protection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: hamzah <hamzah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:46 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/04 17:29:46 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/11/05 23:02:26 by hamzah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-void free_protiction(t_node *node)
+void	free_protection(t_node *node)
 {
-    t_node *temp;
-    while (node)
-    {
-        temp = node;
-        node = node->next;
-        free(temp);
-    }
-    exit(0);
-}
+	t_node	*temp;
 
+	while (node)
+	{
+		temp = node;
+		node = node->next;
+		free(temp);
+	}
+	exit(0);
+}

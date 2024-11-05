@@ -1,4 +1,4 @@
-SRCS		= check_if_char.c check_if_duplicate.c check_if_max_min.c check_rubbish_sign.c free_protiction.c ft_add_back.c ft_create_b.c ft_isalpha_edit.c main.c my_atoi.c parse_arg.c strlen.c
+SRCS		= check.c main.c my_atoi.c parse_arg.c strlen.c free_protection.c ft_add_back.c ft_isalpha_edit.c
 
 OBJS		= $(SRCS:.c=.o)
 
