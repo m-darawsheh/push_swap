@@ -18,6 +18,6 @@ t_node	*ft_create_b(int argc)
 
 	b = calloc (argc, sizeof(t_node));
 	if (!b)
-		free_protiction(b);
+		free_protection(b);
 	return (b);
 }

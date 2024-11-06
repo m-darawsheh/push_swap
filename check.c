@@ -88,3 +88,20 @@ void	check_if_char(int argc, char *argv[])
 		i++;
 	}
 }
+
+
+void	error_sign(int argc, char *argv[])
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if ((argv[i][0] == '-' || argv[i][0] == '+') && argv[i][1] == '\0')
+		{
+			printf("ERROR only sign!\n");
+			exit(0);
+		}
+		
+	}
+}

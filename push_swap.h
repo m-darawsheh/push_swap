@@ -36,5 +36,6 @@ int		ft_isalpha_edit(char *c);
 bool	check_rubbish_sign(const char *nptr);
 t_node	*ft_create_b(int argc);
 size_t	my_strlen(char *str);
+void	error_sign(int argc, char *argv[]);
 
 #endif

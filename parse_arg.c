@@ -19,6 +19,7 @@ void	parse_arg(int argc, char *argv[], t_node **head)
 	check_if_char(argc, argv);
 	check_if_duplicate(argc, argv);
 	check_if_max_min(argc, argv);
+	error_sign(argc, argv);
 	i = 1;
 	while (i < argc)
 	{
