@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha_edit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamzah <hamzah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:38:27 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/05 22:52:54 by hamzah           ###   ########.fr       */
+/*   Updated: 2024/11/06 10:30:27 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int	ft_isalpha_edit(char *c)
 	int	i;
 
 	i = 0;
+	if (c[i] == '-' || c[i] == '+')
+		i++;
 	while (c[i])
 	{
-		if (c[i] > '9' && c[i] < '0'
-			&& c[i] != '+' && c[i] != '-')
+		if (c[i] > '9' || c[i] < '0')
 			return (1);
 		i++;
 	}
