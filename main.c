@@ -18,7 +18,15 @@ int	main(int argc, char **argv)
 
 	head = NULL;
 	if (argc < 3)
+	{
+		if (argc == 2)
+		{
+			error_sign(argc, argv);
+			check_if_char(argc, argv);
+			check_if_max_min(argc, argv);
+		}		
 		return (0);
+	}
 	parse_arg(argc, argv, &head);
 	while (head)
 	{

@@ -102,6 +102,6 @@ void	error_sign(int argc, char *argv[])
 			printf("ERROR only sign!\n");
 			exit(0);
 		}
-		
+		i++;	
 	}
 }
