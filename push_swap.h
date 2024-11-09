@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamzah <hamzah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:10 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/05 23:02:41 by hamzah           ###   ########.fr       */
+/*   Updated: 2024/11/09 11:53:50 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ t_node	*ft_create_b(int argc);
 size_t	my_strlen(char *str);
 void	error_sign(int argc, char *argv[]);
 void	swap_last_two(t_node **head);
-
+void	print_node(t_node *node);
+void	delete_last_node(t_node **node);
+void	push_to_a(t_node **head,t_node **b);
 #endif
