@@ -41,4 +41,9 @@ void	swap_last_two(t_node **head);
 void	print_node(t_node *node);
 void	delete_last_node(t_node **node);
 void	push_to_a(t_node **head,t_node **b);
+void	reverse_rotate_node(t_node **node);
+void	rotate_node(t_node **a);
+void	ss(t_node **a, t_node **b);
+void	rr(t_node **a, t_node **b);
+void	rrr(t_node **a, t_node **b);
 #endif

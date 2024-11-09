@@ -56,16 +56,20 @@ int	main(int argc, char **argv)
 	push_to_a(&head, &b);
 	print_node(head);
 	
-	printf("list b ::::::::: \n");
-	print_node(b);
+	// printf("list b ::::::::: \n");
+	// print_node(b);
 	
-	printf("try to add back\n");
-	ft_add_back(&b, 7777);
-	print_node(b);
+	// printf("try to add back\n");
+	// ft_add_back(&b, 7777);
+	// print_node(b);
 	// printf("swap swap swap\n");
 	// swap_last_two(&head);
 	// print_node(head);
 	// printf("SUCCESS a!\n");
+
+	printf("rotate a\n");
+	rotate_node(&head);
+	print_node(head);
 
 	return (0);
 }

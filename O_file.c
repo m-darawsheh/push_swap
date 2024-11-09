@@ -12,24 +12,6 @@
 
 #include "push_swap.h"
 
-void swap_last_two(t_node **head)
-{
-	if (!head || !(*head) || !(*head)->next)
-		return;
-	t_node		*last;
-	t_node		*second_last;
-	int			temp;
-
-	last = *head;
-	while (last->next)
-	{
-		last = last->next;
-	}
-	second_last = last->prev;
-	temp = last->data;
-	last->data = second_last->data;
-	second_last->data = temp;
-}
 
 int last_data(t_node *node)
 {
@@ -64,6 +46,26 @@ void	delete_last_node(t_node **node)
 
 
 
+void swap_last_two(t_node **head)
+{
+	if (!head || !(*head) || !(*head)->next)
+		return;
+	t_node		*last;
+	t_node		*second_last;
+	int			temp;
+
+	last = *head;
+	while (last->next)
+	{
+		last = last->next;
+	}
+	second_last = last->prev;
+	temp = last->data;
+	last->data = second_last->data;
+	second_last->data = temp;
+}
+
+
 void	push_to_a(t_node **head,t_node **b)
 {
 	t_node *temp;
@@ -81,4 +83,75 @@ void	push_to_a(t_node **head,t_node **b)
 	// check list b befor delete last node
 	ft_add_back(head, data);
 	delete_last_node(b);
+
+
+}
+
+void reverse_rotate_node(t_node **node)
+{
+    t_node *first;
+    t_node *last;
+
+    if (!node || !(*node) || !(*node)->next)
+        return;
+
+    first = *node;
+
+    *node = (*node)->next;
+    (*node)->prev = NULL;
+
+    last = *node;
+    while (last->next)
+        last = last->next;
+
+    last->next = first;
+    first->prev = last;
+    first->next = NULL;
+}
+
+
+void	ss(t_node **a, t_node **b)
+{
+	swap_last_two(a);
+	swap_last_two(b);
+}
+
+void rr(t_node **a, t_node **b)
+{
+	rotate_node(a);
+	rotate_node(b);
+}
+
+void rrr(t_node **a, t_node **b)
+{
+	reverse_rotate_node(a);
+	reverse_rotate_node(b);
+}
+
+
+
+void rotate_node(t_node **a)
+{
+	t_node *last;
+	t_node *second_last;
+
+	if (!a || !(*a) || !(*a)->next)
+		return;
+
+	second_last = *a;
+	while (second_last->next && second_last->next->next)
+	{
+		second_last = second_last->next;
+	}
+
+	printf ("the data from second last is %d\n",second_last->data);
+
+
+	last = second_last->next;
+	second_last->next = NULL;
+
+	last->next = *a;
+	(*a)->prev = last;
+	last->prev = NULL;
+	*a = last;
 }
