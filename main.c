@@ -12,11 +12,24 @@
 
 #include "push_swap.h"
 
+
+static void	print_node(t_node *node)
+{
+	while (node)
+	{
+		printf("%d\n", node->data);
+		node = node->next;
+	}
+}
+
+
 int	main(int argc, char **argv)
 {
 	t_node	*head;
-
+	// t_node	*b;
+	
 	head = NULL;
+	// b = NULL;
 	if (argc < 3)
 	{
 		if (argc == 2)
@@ -27,12 +40,19 @@ int	main(int argc, char **argv)
 		}		
 		return (0);
 	}
+
+
+	// parse_arg(argc, argv, &b);
+	// print_node(b);
+	// printf("succes b\n");
+	// print_node(b);
+
 	parse_arg(argc, argv, &head);
-	while (head)
-	{
-		printf("%d\n", head->data);
-		head = head->next;
-	}
-	printf("SUCCESS!\n");
+	print_node(head);
+	printf("swap swap swap\n");
+	swap_last_two(&head);
+	print_node(head);
+	printf("SUCCESS a!\n");
+
 	return (0);
 }

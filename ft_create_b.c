@@ -12,11 +12,12 @@
 
 #include "push_swap.h"
 
+
 t_node	*ft_create_b(int argc)
 {
 	t_node	*b;
 
-	b = calloc (argc, sizeof(t_node));
+	b = malloc (argc * sizeof(t_node));
 	if (!b)
 		free_protection(b);
 	return (b);
