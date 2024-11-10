@@ -144,7 +144,7 @@ void rotate_node(t_node **a)
 		second_last = second_last->next;
 	}
 
-	printf ("the data from second last is %d\n",second_last->data);
+	// printf ("the data from second last is %d\n",second_last->data);
 
 
 	last = second_last->next;

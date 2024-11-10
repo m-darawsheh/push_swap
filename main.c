@@ -45,16 +45,15 @@ int	main(int argc, char **argv)
 	parse_arg(argc, argv, &b);
 	parse_arg(argc, argv, &head);
 	
-	printf ("before delete last node from a list :\n");
-	print_node(head);
+	// printf ("before delete last node from a list :\n");
+	// print_node(head);
 	
-	printf ("after delete last node\n");
-	delete_last_node(&head);
-	print_node(head);
-	
-	printf("push to a\n");
-	push_to_a(&head, &b);
-	print_node(head);
+	// printf ("after delete last node\n");
+	// delete_last_node(&head);
+	// print_node(head);
+	// printf("push to a\n");
+	// push_to_a(&head, &b);
+	// print_node(head);
 	
 	// printf("list b ::::::::: \n");
 	// print_node(b);
@@ -68,8 +67,10 @@ int	main(int argc, char **argv)
 	// printf("SUCCESS a!\n");
 
 	printf("rotate a\n");
-	rotate_node(&head);
+	rr(&head, &b);
+	printf("a list ::: \n");
 	print_node(head);
-
+	printf("b list ::: \n");
+	print_node(b);
 	return (0);
 }
