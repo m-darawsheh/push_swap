@@ -66,7 +66,7 @@ void swap_last_two(t_node **head)
 }
 
 
-void	push_to_a(t_node **head,t_node **b)
+void	push_to_node(t_node **head,t_node **b)
 {
 	t_node *temp;
 	int data;
