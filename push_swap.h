@@ -46,4 +46,7 @@ void	rotate_node(t_node **a);
 void	ss(t_node **a, t_node **b);
 void	rr(t_node **a, t_node **b);
 void	rrr(t_node **a, t_node **b);
+int		find_min_data(t_node *node);
+void	S_kh(t_node **head);
+bool	is_sorted(t_node *node);
 #endif

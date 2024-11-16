@@ -17,7 +17,7 @@ size_t	my_strlen(char *str)
 	size_t	i;
 	bool is_sign;
 	
-	is_sign; = false;
+	is_sign = false;
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 	{
