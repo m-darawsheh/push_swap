@@ -49,4 +49,8 @@ void	rrr(t_node **a, t_node **b);
 int		find_min_data(t_node *node);
 void	S_kh(t_node **head);
 bool	is_sorted(t_node *node);
+void    algo(t_node **a, t_node **b);
+int		find_index(t_node *node, int data);
+int	node_len(t_node *node);
+
 #endif

@@ -195,7 +195,11 @@ int	main(int argc, char **argv)
 	b = NULL;
 
 	parse_arg(argc, argv, &a);
-	print_node(a);
+	// print_node(a);
+	// print_node(b);
+
+	algo(&a, &b);
+
 
 	// parse_arg(argc, argv, &b);
 	// int i = node_len(head);
