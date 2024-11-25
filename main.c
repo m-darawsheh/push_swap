@@ -23,6 +23,20 @@ void	print_node(t_node *node)
 	printf("\n");
 }
 
+int	node_len(t_node *node)
+{
+	int	len;
+
+	len = 0;
+	while (node)
+	{
+		len++;
+		node = node->next;
+	}
+	return (len);
+}
+
+
 int		find_index(t_node *node, int data)
 {
 	int	i;
@@ -174,38 +188,47 @@ void	M_dr(t_node **head, t_node **b)
 
 int	main(int argc, char **argv)
 {
-	t_node	*head;
+	t_node	*a;
 	t_node	*b;
 	
-	head = NULL;
+	a = NULL;
 	b = NULL;
-	if (argc < 3)
-	{
-		if (argc == 2)
-		{
-			error_sign(argc, argv);
-			check_if_char(argc, argv);
-			check_if_max_min(argc, argv);
-		}		
-		return (0);
-	}
 
+	parse_arg(argc, argv, &a);
+	print_node(a);
 
 	// parse_arg(argc, argv, &b);
-	parse_arg(argc, argv, &head);
-	print_node(head);
+	// int i = node_len(head);
+	// printf("len is %d\n", i);
 
-	reverse_rotate_node(&head);
-	print_node(head);
-
-	rotate_node(&head);
-	print_node(head);
-
+	// push_to_node(&head, &b);
+	// push_to_node(&head, &b);
 	// print_node(b);
-	push_to_node(&head, &b);
-	push_to_node(&head, &b);
-	print_node(head);
-	print_node(b);
+	// swap_last_two(&b);
+	// print_node(b);
+
+
+
+	// push_to_node(&head, &b);
+	// print_node(b);
+	// reverse_rotate_node(&b);
+	// print_node(b);
+	// rotate_node(&b);
+	// print_node(b);
+
+
+	// reverse_rotate_node(&head);
+	// print_node(head);
+
+	// rotate_node(&head);
+	// print_node(head);
+
+	// // print_node(b);
+	// push_to_node(&head, &b);
+	// print_node(head);
+	// print_node(b);
+
+
 
 
 
@@ -241,3 +264,5 @@ int	main(int argc, char **argv)
 	// print_node(b);
 	return (0);
 }
+
+

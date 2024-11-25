@@ -49,7 +49,10 @@ void	delete_last_node(t_node **node)
 void swap_last_two(t_node **head)
 {
 	if (!head || !(*head) || !(*head)->next)
-		return;
+	{
+		printf("stack is empty\n");
+		exit(0);
+	}
 	t_node		*last;
 	t_node		*second_last;
 	int			temp;
@@ -72,7 +75,7 @@ void	push_to_node(t_node **stack1, t_node **stack2)
 	int data;
 	if (!stack1)
 	{
-		printf("list b is empty\n");
+		printf("from stack is empty\n");
 		exit(0);
 	}
 	temp = *stack1;
@@ -91,7 +94,10 @@ void reverse_rotate_node(t_node **node)
     t_node *last;
 
     if (!node || !(*node) || !(*node)->next)
-        return;
+	{
+		printf("list is empty\n");
+		exit(0);
+	}
 
     first = *node;
 
@@ -134,7 +140,10 @@ void rotate_node(t_node **a)
 	t_node *second_last;
 
 	if (!a || !(*a) || !(*a)->next)
-		return;
+	{
+		printf("list is empty\n");
+		exit(0);
+	}
 
 	second_last = *a;
 	while (second_last->next && second_last->next->next)
