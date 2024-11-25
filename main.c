@@ -17,9 +17,10 @@ void	print_node(t_node *node)
 {
 	while (node)
 	{
-		printf("%d\n", node->data);
+		printf("%d\t", node->data);
 		node = node->next;
 	}
+	printf("\n");
 }
 
 int		find_index(t_node *node, int data)
@@ -174,10 +175,10 @@ void	M_dr(t_node **head, t_node **b)
 int	main(int argc, char **argv)
 {
 	t_node	*head;
-	// t_node	*b;
+	t_node	*b;
 	
 	head = NULL;
-	// b = NULL;
+	b = NULL;
 	if (argc < 3)
 	{
 		if (argc == 2)
@@ -193,6 +194,24 @@ int	main(int argc, char **argv)
 	// parse_arg(argc, argv, &b);
 	parse_arg(argc, argv, &head);
 	print_node(head);
+
+	reverse_rotate_node(&head);
+	print_node(head);
+
+	rotate_node(&head);
+	print_node(head);
+
+	// print_node(b);
+	push_to_node(&head, &b);
+	push_to_node(&head, &b);
+	print_node(head);
+	print_node(b);
+
+
+
+
+
+
 	// printf ("before delete last node from a list :\n");
 	// print_node(head);
 	

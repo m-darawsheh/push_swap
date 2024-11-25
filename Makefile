@@ -5,7 +5,7 @@ OBJS		= $(SRCS:.c=.o)
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-NAME		= push_swap
+NAME		= push_swap_exe
 
 
 all: $(NAME)

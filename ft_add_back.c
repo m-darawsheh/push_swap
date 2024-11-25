@@ -14,17 +14,24 @@
 
 void	ft_add_back(t_node **head, int data)
 {
-	t_node	*new;
-	t_node	*temp;
+	t_node	*new_node;
 
-	new = malloc(sizeof(t_node));
-	if (!new)
-		free_protection(*head);
-	new->data = data;
-	new->next = NULL;
-	temp = *head;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
-	new->prev = temp;
+	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		free_protection(new_node);
+	new_node->data = data;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	if (*head == NULL)
+		*head = new_node;
+	else
+	{
+		t_node	*last;
+
+		last = *head;
+		while (last->next)
+			last = last->next;
+		last->next = new_node;
+		new_node->prev = last;
+	}
 }

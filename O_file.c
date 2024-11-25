@@ -66,25 +66,23 @@ void swap_last_two(t_node **head)
 }
 
 
-void	push_to_node(t_node **head,t_node **b)
+void	push_to_node(t_node **stack1, t_node **stack2)
 {
 	t_node *temp;
 	int data;
-	if (!b)
+	if (!stack1)
 	{
 		printf("list b is empty\n");
 		exit(0);
 	}
-	temp = *b;
+	temp = *stack1;
 	while (temp->next)
 		temp = temp->next;
 	data = temp->data;
-	printf("the last data from b is ::: %d\n", data);
+	// printf("the last data from b is ::: %d\n", data);
 	// check list b befor delete last node
-	ft_add_back(head, data);
-	delete_last_node(b);
-
-
+	ft_add_back(stack2, data);
+	delete_last_node(stack1);
 }
 
 void reverse_rotate_node(t_node **node)
