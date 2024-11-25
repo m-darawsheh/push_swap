@@ -22,6 +22,22 @@ void	print_node(t_node *node)
 	}
 }
 
+int		find_index(t_node *node, int data)
+{
+	int	i;
+
+	i = 0;
+	while (node)
+	{
+		if (node->data == data)
+			return (i);
+		node = node->next;
+		i++;
+	}
+	printf( "error input data\n");
+	return (-1);
+}
+
 int	find_min_data(t_node *node)
 {
 	t_node	*min;
@@ -33,29 +49,21 @@ int	find_min_data(t_node *node)
 			min = node;
 		node = node->next;
 	}
-	if (min-> prev == NULL)
-		return (1);
-	else if (min->next == NULL)
-		return (3);
-	return (2);
+	return (find_index(node, min->data));
 }
 
-int find_min_number(char *argv[])
+int find_max_data(t_node *node)
 {
-	int i;
-	int min;
-	
-	i = 0;
-	while (argv[i])
+	t_node	*max;
+
+	max = node -> next;
+	while (node)
 	{
-		if (i == 0)
-			min = my_atoi(argv[i]);
-		else if (my_atoi(argv[i]) < min)
-			min = my_atoi(argv[i]);
-		i++;
+		if (node->data > max->data)
+			max = node;
+		node = node->next;
 	}
-	return (i);
-	;
+	return (find_index(node, max->data));
 }
 
 
@@ -98,6 +106,71 @@ void	S_kh(t_node **head)
 	}
 }
 
+void	push_min(t_node	**head, t_node	**b, int	place_min_data)
+{
+	if (place_min_data < 3)
+	{
+		int	i;
+
+		i = 0;
+		while (i < place_min_data)
+		{
+			reverse_rotate_node(head);
+			i++;
+		}
+		
+	}
+	else
+	{
+		int	j;
+
+		j = 4;
+		while (j >= place_min_data)
+		{
+			rotate_node(head);
+			j--;
+		}
+	}
+	push_to_node(b, head);
+}
+
+void	push_max(t_node	**head, t_node	**b, int	place_max_data)
+{
+	if (place_max_data == 1)
+	{
+		reverse_rotate_node(head);
+	}
+	else if (place_max_data == 2)
+	{
+		rotate_node(head);
+		rotate_node(head);
+	}
+	else if (place_max_data == 3)
+	{
+		rotate_node(head);
+	}
+	push_to_node(b, head);
+}
+
+void	M_dr(t_node **head, t_node **b)
+{
+	int	place_min_data;
+	int	place_max_data;
+
+	place_min_data = find_min_data(*head);
+	place_max_data = find_max_data(*head);
+	if (is_sorted(*head))
+		return ;
+	push_min(head, b, place_min_data);
+	push_max(head, b, place_max_data);
+	S_kh(head);
+	push_to_node(head, b);
+	push_to_node(head, b);
+	rotate_node(head);
+	
+}
+
+
 int	main(int argc, char **argv)
 {
 	t_node	*head;
@@ -119,7 +192,6 @@ int	main(int argc, char **argv)
 
 	// parse_arg(argc, argv, &b);
 	parse_arg(argc, argv, &head);
-	S_kh(&head);
 	print_node(head);
 	// printf ("before delete last node from a list :\n");
 	// print_node(head);
