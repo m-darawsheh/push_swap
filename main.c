@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:24:01 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/09 12:46:47 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:46:19 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,20 @@ int find_max_data(t_node *node)
 
 bool	is_sorted(t_node *node)
 {
-	while (node->next)
+	t_node	*min = get_min(node);
+	t_node	*temp = min;
+	while (true)
 	{
-		if (node->data > node->next->data)
+		if (min->data > min->prev->data && min->prev->data != temp->data)
 			return (false);
-		node = node->next;
+		min = min->prev;
+		if (!min->prev)
+		{
+			min = get_last(node);
+		}
+		if (temp->data == min->data)
+			return (true);
 	}
-	return (true);
 }
 
 
@@ -133,7 +140,7 @@ void	push_min(t_node	**head, t_node	**b, int	place_min_data)
 			reverse_rotate_node(head);
 			i++;
 		}
-		
+
 	}
 	else
 	{
@@ -182,7 +189,7 @@ void	M_dr(t_node **head, t_node **b)
 	push_to_node(head, b);
 	push_to_node(head, b);
 	rotate_node(head);
-	
+
 }
 
 
@@ -190,7 +197,7 @@ int	main(int argc, char **argv)
 {
 	t_node	*a;
 	t_node	*b;
-	
+
 	a = NULL;
 	b = NULL;
 
@@ -241,17 +248,17 @@ int	main(int argc, char **argv)
 
 	// printf ("before delete last node from a list :\n");
 	// print_node(head);
-	
+
 	// printf ("after delete last node\n");
 	// delete_last_node(&head);
 	// print_node(head);
 	// printf("push to a\n");
 	// push_to_a(&head, &b);
 	// print_node(head);
-	
+
 	// printf("list b ::::::::: \n");
 	// print_node(b);
-	
+
 	// printf("try to add back\n");
 	// ft_add_back(&b, 7777);
 	// print_node(b);

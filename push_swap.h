@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:10 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/09 11:53:50 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:43:24 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ bool	is_sorted(t_node *node);
 void    algo(t_node **a, t_node **b);
 int		find_index(t_node *node, int data);
 int	node_len(t_node *node);
-
+t_node *get_min(t_node *stack);
+t_node *get_last(t_node *stack);
 #endif
