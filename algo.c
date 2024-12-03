@@ -1,6 +1,12 @@
 #include "push_swap.h"
 
 
+		// must here call the khalele and choose the rotation or reverse rotation
+		// do not forget to edite on khalele and the next step is suring if i walk on 
+		// every single element in a and calculate how many rotation or reverse rotation
+		// need it to be on the right place
+
+
 t_node *get_min(t_node *stack)
 {
 	t_node *min = stack;
@@ -94,10 +100,6 @@ void	algo(t_node **a, t_node **b)
 	t_node *last_a;
 	while (last_a = get_last(*a))
 	{
-		// must here call the khalele and choose the rotation or reverse rotation
-		// do not forget to edite on khalele and the next step is suring if i walk on 
-		// every single element in a and calculate how many rotation or reverse rotation
-		// need it to be on the right place
 
 		int data = right_place(last_a, *b);
 
@@ -121,7 +123,7 @@ void	algo(t_node **a, t_node **b)
 		}
 		int	for_top = 0;
 		bool	do_rotate_a = true;
-
+		int	for_right_place;
 		while(true)
 		{
 			int	index = find_index(*a, winer_node->data) + 1;
@@ -136,7 +138,6 @@ void	algo(t_node **a, t_node **b)
 				for_top = HowManyRotation_to_top(*a, winer_node->data);
 			}
 			int	data = right_place(winer_node, *b);
-			int	for_right_place;
 			rotation = calc_rotation(node_len(*b), find_index(*b, data));
 			reverse_rotation = calc_reverse_rotation(node_len(*b), find_index(*b, data));
 			if (rotation < reverse_rotation)
@@ -153,6 +154,7 @@ void	algo(t_node **a, t_node **b)
 			if (total < min_opration)
 			{
 				min_opration = total;
+				// printf("min_opration %d\n", min_opration);
 			}
 
 			winer_node = winer_node->prev;
@@ -161,37 +163,37 @@ void	algo(t_node **a, t_node **b)
 		}
 
 
-		int generic_rotation;
-		if (do_rotate_b)
-			generic_rotation = rotation;
-			
-		else
-			generic_rotation = reverse_rotation;
 
-
+		printf("min_opration %d\n", min_opration);
+		printf("for_top %d\n", for_top);
+		printf("for_right_place %d\n", for_right_place);
 
 
 		int	rx = 0;
-		while (rx < for_top)
+		if (for_top != 0)
 		{
-			if (do_rotate_a)
+			while (rx < for_top)
 			{
-				rotate_node(a);
-				printf("ra\n");
+				if (do_rotate_a)
+				{
+					rotate_node(a);
+					printf("ra\n");
+				}
+				else
+				{
+					reverse_rotate_node(a);
+					printf("rra\n");
+				}
+				rx++;
 			}
-			else
-			{
-				reverse_rotate_node(a);
-				printf("rra\n");
-			}
-			rx++;
+
 		}
-		
 
 		int j = 0;
-		while (j < generic_rotation)
+		
+		while (j < for_right_place)
 		{
-			if (rotation < reverse_rotation)
+			if (do_rotate_b)
 			{
 				printf("rb\n");
 				rotate_node(b);
@@ -204,6 +206,9 @@ void	algo(t_node **a, t_node **b)
 			j++;
 		}
 
+
+		
+
 		push_to_node(a, b);
 		printf("pb\n");
 
@@ -215,6 +220,17 @@ void	algo(t_node **a, t_node **b)
 
 }
            
+
+		// printf("min_opration %d\n", min_opration);
+		// printf("the data is %d\n", winer_node->data);
+
+		// int generic_rotation;
+		// if (do_rotate_b)
+		// 	generic_rotation = rotation;
+			
+		// else
+		// 	generic_rotation = reverse_rotation;
+
 
 // -37 94 -12 58 -72 86 -45 3 -99 18 64 -41 77 -29 50 -25 92 -68 5 -81 21 -53 10 -32 66 -15 7 -47 97 -39 89 -1 74 -20 55 -33 98 -13 85 -56 31 -8 63 -46 17 -95 61 -36 73 -16 87 -11 60 -34 83 -70 48 -4 30 -26 62 -19 91 -24 44 -6 78 -42 2 -93 57 -38 28 -96 54 -75 35 -84 100 -40 22 -49 65 -14 88 -76 9 -27 82 -59 51 -79 67 -23 90 -71 52 -43 80 -69
 
