@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <stddef.h>
+# include <limits.h>
 
 typedef struct t_node
 {

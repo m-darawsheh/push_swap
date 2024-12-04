@@ -207,7 +207,6 @@ int	main(int argc, char **argv)
 
 	algo(&a, &b);
 
-
 	// parse_arg(argc, argv, &b);
 	// int i = node_len(head);
 	// printf("len is %d\n", i);

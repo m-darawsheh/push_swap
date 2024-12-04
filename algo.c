@@ -87,6 +87,63 @@ int	right_place(t_node *a, t_node *b)
 		return (min->data);
 }
 
+bool	be_rotated(t_node *node)
+{
+	bool	is_rotated = true;
+	int	local = find_index(node, node->data) + 1;
+	int	length = node_len(node);
+	float	middle = length / 2;
+
+	if (local < middle)
+		is_rotated = false;
+	return (is_rotated);
+}
+
+t_node *winner_node(t_node *a, t_node *b)
+{
+    t_node *winner = NULL;
+    t_node *temp = get_last(a);
+    int min_opration = INT_MAX;
+
+    while (temp)
+    {
+
+		int data = right_place(temp, b);
+
+		int rotation = 0;
+		int reverse_rotation = 0;
+
+		rotation = calc_rotation(node_len(b), find_index(b, data));
+		reverse_rotation = calc_reverse_rotation(node_len(b), find_index(b, data));
+        int for_right_place = rotation<reverse_rotation ? rotation : reverse_rotation;
+
+        int for_top = be_rotated(temp) ? HowManyRotation_to_top(temp, temp->data) : HowManyReverseRotation_to_top(temp, temp->data);
+        int total = for_top + for_right_place;
+
+        if (total < min_opration)
+        {
+            min_opration = total;
+            winner = temp;
+        }
+
+		temp = temp->prev;
+    }
+
+    return (winner);
+}
+bool	three_in_a(t_node *stack)
+{
+	int i = 0;
+	while (stack)
+	{
+		i++;
+		stack = stack->next;
+	}
+	if (i == 3)
+		return (true);
+	return (false);
+}
+
 void	algo(t_node **a, t_node **b)
 {
 	push_to_node(a, b);
@@ -96,173 +153,66 @@ void	algo(t_node **a, t_node **b)
 
 
 
-
-	t_node *last_a;
-	while (last_a = get_last(*a))
+	bool	stop = false;
+	while (!stop)
 	{
-
-		int data = right_place(last_a, *b);
-
+		t_node *winner = winner_node(*a, *b);
+		printf("winner is %d\n", winner->data);
+		int data = right_place(winner, *b);
 		int rotation = 0;
 		int reverse_rotation = 0;
 
 		rotation = calc_rotation(node_len(*b), find_index(*b, data));
 		reverse_rotation = calc_reverse_rotation(node_len(*b), find_index(*b, data));
 
-		bool	do_rotate_b = true;
-		t_node *winer_node = last_a;
-		int min_opration ;
-		if (rotation < reverse_rotation)
+		int for_top = be_rotated(winner) ? HowManyRotation_to_top(winner, winner->data) : HowManyReverseRotation_to_top(winner, winner->data);
+		int for_right_place = rotation<reverse_rotation ? rotation : reverse_rotation;
+
+		int i = 0;
+
+		while (i < for_top)
 		{
-			min_opration = rotation;
-		}
-		else
-		{
-			min_opration = reverse_rotation;
-			do_rotate_b = false;
-		}
-		int	for_top = 0;
-		bool	do_rotate_a = true;
-		int	for_right_place;
-		while(true)
-		{
-			int	index = find_index(*a, winer_node->data) + 1;
-			float	middle = node_len(*a) / 2;
-			if (index < middle)
+			if (be_rotated(winner))
 			{
-				for_top = HowManyReverseRotation_to_top(*a, winer_node->data);
-				do_rotate_a = false;
+				rotate_node(a);
+				printf("ra\n");
 			}
 			else
 			{
-				for_top = HowManyRotation_to_top(*a, winer_node->data);
-			}
-			int	data = right_place(winer_node, *b);
-			rotation = calc_rotation(node_len(*b), find_index(*b, data));
-			reverse_rotation = calc_reverse_rotation(node_len(*b), find_index(*b, data));
-			if (rotation < reverse_rotation)
-			{
-				for_right_place = rotation;
-			}
-			else
-			{
-				for_right_place = reverse_rotation;
-				do_rotate_b = false;
-			}
+				reverse_rotate_node(a);
+				printf("rra\n");
 
-			int	total = for_top + for_right_place;
-			if (total < min_opration)
-			{
-				min_opration = total;
-				// printf("min_opration %d\n", min_opration);
 			}
-
-			winer_node = winer_node->prev;
-			if (!winer_node)
-				break;
+			i++;
 		}
-
-
-
-		printf("min_opration %d\n", min_opration);
-		printf("for_top %d\n", for_top);
-		printf("for_right_place %d\n", for_right_place);
-
-
-		int	rx = 0;
-		if (for_top != 0)
-		{
-			while (rx < for_top)
-			{
-				if (do_rotate_a)
-				{
-					rotate_node(a);
-					printf("ra\n");
-				}
-				else
-				{
-					reverse_rotate_node(a);
-					printf("rra\n");
-				}
-				rx++;
-			}
-
-		}
-
 		int j = 0;
-		
+
 		while (j < for_right_place)
 		{
-			if (do_rotate_b)
+			if(rotation < reverse_rotation)
 			{
-				printf("rb\n");
 				rotate_node(b);
+				printf("rb\n");
 			}
 			else
 			{
-				printf("rrb\n");
 				reverse_rotate_node(b);
+				printf("rrb\n");
 			}
 			j++;
 		}
 
-
-		
-
 		push_to_node(a, b);
 		printf("pb\n");
 
+		stop = three_in_a(*a);
+		
+
+
 	}
-	 
+	print_node(*a);
 	print_node(*b);
 
 	printf( is_sorted(*b) ? "is sorted\n" : "not sorted\n");
 
 }
-           
-
-		// printf("min_opration %d\n", min_opration);
-		// printf("the data is %d\n", winer_node->data);
-
-		// int generic_rotation;
-		// if (do_rotate_b)
-		// 	generic_rotation = rotation;
-			
-		// else
-		// 	generic_rotation = reverse_rotation;
-
-
-// -37 94 -12 58 -72 86 -45 3 -99 18 64 -41 77 -29 50 -25 92 -68 5 -81 21 -53 10 -32 66 -15 7 -47 97 -39 89 -1 74 -20 55 -33 98 -13 85 -56 31 -8 63 -46 17 -95 61 -36 73 -16 87 -11 60 -34 83 -70 48 -4 30 -26 62 -19 91 -24 44 -6 78 -42 2 -93 57 -38 28 -96 54 -75 35 -84 100 -40 22 -49 65 -14 88 -76 9 -27 82 -59 51 -79 67 -23 90 -71 52 -43 80 -69
-
-// 2665
-
-// t_node  *get_max(t_node *stack)
-// {
-//	 t_node  *max = stack;
-//	 while (stack)
-//	 {
-//		 if (stack->data > max->data)
-//			 max = stack;
-//		 stack = stack->next;
-//	 }
-// }
-
-//	 push_to_node(a, b);
-	// print_node(*a);
-		// printf("min %d index: %d\n", min->data, min_index);
-
-		// t_node  *max = get_max(*b);
-		// printf("min %d\n", min->data);
-		// printf("rotation %d\n", rotation);
-		// printf("reverse rotation %d\n", reverse_rotation);
-	// print_node(*b);
-	// print_node(*a);
-	// print_node(*a);
-	// print_node(*b);
-
-	// push_to_node(a, b);
-
-	// if (is_sorted(*b))
-	//	 swap_last_two(b);
-
-	// push_to_node(a, b);
