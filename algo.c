@@ -1,12 +1,6 @@
 #include "push_swap.h"
 
 
-		// must here call the khalele and choose the rotation or reverse rotation
-		// do not forget to edite on khalele and the next step is suring if i walk on 
-		// every single element in a and calculate how many rotation or reverse rotation
-		// need it to be on the right place
-
-
 t_node *get_min(t_node *stack)
 {
 	t_node *min = stack;
@@ -71,7 +65,6 @@ int	right_place(t_node *a, t_node *b)
 {
 
 		t_node *min = get_min(b);
-		// int min_index = find_index(b, min->data);
 
 		t_node *temp = min;
 		while (a->data > min->data)
@@ -157,7 +150,7 @@ void	algo(t_node **a, t_node **b)
 	while (!stop)
 	{
 		t_node *winner = winner_node(*a, *b);
-		printf("winner is %d\n", winner->data);
+		// printf("winner is %d\n", winner->data);
 		int data = right_place(winner, *b);
 		int rotation = 0;
 		int reverse_rotation = 0;
@@ -168,8 +161,39 @@ void	algo(t_node **a, t_node **b)
 		int for_top = be_rotated(winner) ? HowManyRotation_to_top(winner, winner->data) : HowManyReverseRotation_to_top(winner, winner->data);
 		int for_right_place = rotation<reverse_rotation ? rotation : reverse_rotation;
 
-		int i = 0;
 
+		int	limiting_factor = 0;
+
+		if (for_top > for_right_place)
+		{
+			limiting_factor = for_right_place;
+			for_right_place -= limiting_factor;
+			for_top -= limiting_factor;
+		}
+		else
+		{
+			limiting_factor = for_top;
+			for_right_place -= limiting_factor;
+			for_top -= limiting_factor;
+
+		}
+		int L = 0;
+		while (L < limiting_factor)
+		{
+			if (be_rotated(winner) && rotation < reverse_rotation)
+			{
+				rr(a, b);
+				printf("rr\n");
+			}
+			else
+			{
+				rrr(a, b);
+				printf("rrr\n");
+			}
+			L++;
+		}
+
+		int i = 0;
 		while (i < for_top)
 		{
 			if (be_rotated(winner))
@@ -210,9 +234,9 @@ void	algo(t_node **a, t_node **b)
 
 
 	}
-	print_node(*a);
-	print_node(*b);
+	// print_node(*a);
+	// print_node(*b);
 
-	printf( is_sorted(*b) ? "is sorted\n" : "not sorted\n");
+	// printf( is_sorted(*b) ? "is sorted\n" : "not sorted\n");
 
 }
