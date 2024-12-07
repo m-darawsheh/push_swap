@@ -15,6 +15,36 @@ t_node *get_min(t_node *stack)
 	return (min);
 }
 
+t_node *get_max(t_node *stack)
+{
+	t_node *max = stack;
+
+	while (stack)
+	{
+		if (stack->data > max->data)
+			max = stack;
+		stack = stack->next;
+	}
+
+	return (max);
+}
+
+void reverse_stack(t_node **stack)
+{
+	t_node *temp = *stack;
+	t_node *prev = NULL;
+	t_node *next = NULL;
+
+	while (temp)
+	{
+		next = temp->next;
+		temp->next = prev;
+		prev = temp;
+		temp = next;
+	}
+
+	*stack = prev;
+}
 
 
 t_node *get_last(t_node *stack)
@@ -152,6 +182,9 @@ void	algo(t_node **a, t_node **b)
 	printf("pb\n");
 	printf("pb\n");
 
+	// print_node(*a);
+	// print_node(*b);
+
 
 
 	bool	stop = false;
@@ -240,8 +273,8 @@ void	algo(t_node **a, t_node **b)
 	t_node *min = get_min(*b);
 
 	int rotation_min = calc_rotation(node_len(*b), find_index(*b, min->data));
-
 	int reverse_rotation_min = calc_reverse_rotation(node_len(*b), find_index(*b, min->data));
+
 	int min_to_top = rotation_min<reverse_rotation_min ? rotation_min : reverse_rotation_min;
 	int i = 0;
 	while (i < min_to_top)
@@ -258,6 +291,10 @@ void	algo(t_node **a, t_node **b)
 		}
 		i++;
 	}
+	// print_node(*b);
+	// reverse_stack(b);
+	// print_node(*b);
+
 	int push_count = node_len (*b);
 	i = 0;
 	while (i < push_count)

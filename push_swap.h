@@ -25,7 +25,7 @@ typedef struct t_node
 	struct t_node	*next;
 	struct t_node	*prev;
 }	t_node;
-
+void	ft_add_front(t_node **head, int data);
 void	parse_arg(int argc, char *argv[], t_node **head);
 long	my_atoi(const char *nptr);
 void	ft_add_back(t_node **head, int data);
