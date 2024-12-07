@@ -58,13 +58,24 @@ t_node *get_last(t_node *stack)
 
 int calc_rotation(int length, int index)
 {
-	return length - index - 1;
+	(void)length;
+	return index;
 }
 
 int calc_reverse_rotation(int length, int index)
 {
-	return (index + 1);
+	return index == 0 ? 0 : (length - index);
 }
+
+// int calc_rotation(int length, int index)
+// {
+// 	return length - index - 1;
+// }
+
+// int calc_reverse_rotation(int length, int index)
+// {
+// 	return (index + 1);
+// }
 
 int HowManyRotation_to_top(t_node *stack, int data)
 {
@@ -106,23 +117,31 @@ int	right_place(t_node *a, t_node *b)
 
 			if (temp->data == min->data)
 			{
-				return (min->data);
+				if (min->next)
+					return (min->next->data);
+				else
+					return (b->data);
 			}
 		}
-		return (min->data);
+		if (min->next)
+			return (min->next->data);
+		else
+			return (b->data);
+		// return (min->data);
 }
 
 
 t_node *winner_node(t_node *a, t_node *b)
 {
     t_node *winner = NULL;
-    t_node *temp = get_last(a);
+    t_node *temp = a;
     int min_opration = INT_MAX;
 
     while (temp)
     {
 
 		int data = right_place(temp, b);
+		// printf("right place for %d is %d\n", temp->data, data);
 
 		int rotation = 0;
 		int reverse_rotation = 0;
@@ -146,7 +165,7 @@ t_node *winner_node(t_node *a, t_node *b)
             winner = temp;
         }
 
-		temp = temp->prev;
+		temp = temp->next;
     }
 
     return (winner);
@@ -187,10 +206,14 @@ void	algo(t_node **a, t_node **b)
 
 
 
-	bool	stop = false;
-	while (!stop)
+	// bool	stop = false;
+	while (!the_list_is_empty(*a))
 	{
 		t_node *winner = winner_node(*a, *b);
+
+		// printf("winner is %d\n", winner->data);
+
+		// break;
 
 		int Data = right_place(winner, *b);
 		int rotation = 0;
@@ -264,13 +287,14 @@ void	algo(t_node **a, t_node **b)
 		push_to_node(a, b);
 		printf("pb\n");
 
-		stop = the_list_is_empty(*a);
-		
+		// stop = ;
 
+		// print_node(*a);
+		// print_node(*b);
 
 	}
 
-	t_node *min = get_min(*b);
+	t_node *min = get_max(*b);
 
 	int rotation_min = calc_rotation(node_len(*b), find_index(*b, min->data));
 	int reverse_rotation_min = calc_reverse_rotation(node_len(*b), find_index(*b, min->data));

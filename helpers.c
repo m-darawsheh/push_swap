@@ -25,7 +25,7 @@ int		find_index(t_node *node, int data)
 		node = node->next;
 		i++;
 	}
-	printf( "error input data\n");
+	printf( "error input dataaa\n");
 	return (-1);
 }
 

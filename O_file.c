@@ -44,6 +44,22 @@ void	delete_last_node(t_node **node)
 	free(last_node);
 }
 
+void delete_first_node(t_node **node)
+{
+	t_node *temp = *node;
+
+	if (*node == NULL)
+		return;
+	if ((*node)->next == NULL) {
+		free(*node);
+		*node = NULL;
+		return;
+	}
+	*node = (*node)->next;
+	(*node)->prev = NULL;
+	free(temp);
+}
+
 
 
 void swap_last_two(t_node **head)
@@ -73,65 +89,21 @@ void	push_to_node(t_node **stack1, t_node **stack2)
 {
 	t_node *temp;
 	int data;
-	if (!stack1)
-	{
-		printf("from stack is empty\n");
-		exit(0);
-	}
+	// if (!stack1 || !(*stack1))
+	// {
+	// 	printf("from stack is empty\n");
+	// 	exit(0);
+	// }
+
+	// push the first element from stack1 to first element of stack2
 	temp = *stack1;
-	while (temp->next)
-		temp = temp->next;
 	data = temp->data;
-	ft_add_back(stack2, data);
-	delete_last_node(stack1);
+	delete_first_node(stack1);
+	// printf("hi\n");
+	ft_add_front(stack2, data);
 }
 
-void reverse_rotate_node(t_node **node)
-{
-	t_node	*first;
-	t_node	*last;
-
-	if (!node || !(*node) || !(*node)->next)
-	{
-		printf("list is empty\n");
-		exit(0);
-	}
-
-	first = *node;
-
-	*node = (*node)->next;
-	(*node)->prev = NULL;
-
-	last = *node;
-	while (last->next)
-		last = last->next;
-
-	last->next = first;
-	first->prev = last;
-	first->next = NULL;
-}
-
-void	ss(t_node **a, t_node **b)
-{
-	swap_last_two(a);
-	swap_last_two(b);
-}
-
-void rr(t_node **a, t_node **b)
-{
-	rotate_node(a);
-	rotate_node(b);
-}
-
-void rrr(t_node **a, t_node **b)
-{
-	reverse_rotate_node(a);
-	reverse_rotate_node(b);
-}
-
-
-
-void rotate_node(t_node **a)
+void reverse_rotate_node(t_node **a)
 {
 	t_node *last;
 	t_node *second_last;
@@ -156,4 +128,49 @@ void rotate_node(t_node **a)
 	(*a)->prev = last;
 	last->prev = NULL;
 	*a = last;
+}
+
+void	ss(t_node **a, t_node **b)
+{
+	swap_last_two(a);
+	swap_last_two(b);
+}
+
+void rr(t_node **a, t_node **b)
+{
+	rotate_node(a);
+	rotate_node(b);
+}
+
+void rrr(t_node **a, t_node **b)
+{
+	reverse_rotate_node(a);
+	reverse_rotate_node(b);
+}
+
+
+
+void rotate_node(t_node **node)
+{
+	t_node	*first;
+	t_node	*last;
+
+	if (!node || !(*node) || !(*node)->next)
+	{
+		printf("list is empty\n");
+		exit(0);
+	}
+
+	first = *node;
+
+	*node = (*node)->next;
+	(*node)->prev = NULL;
+
+	last = *node;
+	while (last->next)
+		last = last->next;
+
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
 }
