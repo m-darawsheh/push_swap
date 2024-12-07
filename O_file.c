@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 
-int last_data(t_node *node)
+int	last_data(t_node *node)
 {
 	if (!node)
 	{
@@ -27,21 +27,21 @@ int last_data(t_node *node)
 
 void	delete_last_node(t_node **node)
 {
-    t_node *temp = *node;
-	
-    if (*node == NULL)
-        return;
-    if (temp->next == NULL) {
-        free(temp);
-        *node = NULL;
-        return;
-    }
-    while (temp->next && temp->next->next) {
-        temp = temp->next;
-    }
-    t_node *last_node = temp->next;
-    temp->next = NULL;
-    free(last_node);
+	t_node *temp = *node;
+
+	if (*node == NULL)
+		return;
+	if (temp->next == NULL) {
+		free(temp);
+		*node = NULL;
+		return;
+	}
+	while (temp->next && temp->next->next) {
+		temp = temp->next;
+	}
+	t_node *last_node = temp->next;
+	temp->next = NULL;
+	free(last_node);
 }
 
 
@@ -82,37 +82,34 @@ void	push_to_node(t_node **stack1, t_node **stack2)
 	while (temp->next)
 		temp = temp->next;
 	data = temp->data;
-	// printf("the last data from b is ::: %d\n", data);
-	// check list b befor delete last node
 	ft_add_back(stack2, data);
 	delete_last_node(stack1);
 }
 
 void reverse_rotate_node(t_node **node)
 {
-    t_node *first;
-    t_node *last;
+	t_node	*first;
+	t_node	*last;
 
-    if (!node || !(*node) || !(*node)->next)
+	if (!node || !(*node) || !(*node)->next)
 	{
 		printf("list is empty\n");
 		exit(0);
 	}
 
-    first = *node;
+	first = *node;
 
-    *node = (*node)->next;
-    (*node)->prev = NULL;
+	*node = (*node)->next;
+	(*node)->prev = NULL;
 
-    last = *node;
-    while (last->next)
-        last = last->next;
+	last = *node;
+	while (last->next)
+		last = last->next;
 
-    last->next = first;
-    first->prev = last;
-    first->next = NULL;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
 }
-
 
 void	ss(t_node **a, t_node **b)
 {
