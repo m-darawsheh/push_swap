@@ -57,6 +57,10 @@ typedef struct s_cost
 
 	int double_rotation;
 	int double_reverse_rotation;
+
+	int collective_cost_test1;
+	int collective_cost_test2;
+	int collective_cost_test3;
 	int collective_cost;
 } t_cost;
 
@@ -69,7 +73,7 @@ int get_min_int(int a, int b)
 
 t_cost calc_cost(t_node node, t_node *a, t_node *b)
 {
-	t_cost cost = {0, 0, 0, 0, 0, 0, 0};
+	t_cost cost = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 	t_node *min = get_min(b);
 
@@ -106,7 +110,15 @@ t_cost calc_cost(t_node node, t_node *a, t_node *b)
 	// cost.rotation_before_push -= cost.double_rotation;
 	// cost.reverse_rotation -= cost.double_reverse_rotation;
 	// cost.reverse_rotation_before_push -= cost.double_reverse_rotation;
-	cost.collective_cost = get_min_int(cost.rotation, cost.reverse_rotation) + get_min_int(cost.rotation_before_push, cost.reverse_rotation_before_push);
+	cost.collective_cost_test1 = get_min_int(cost.rotation, cost.reverse_rotation) + get_min_int(cost.rotation_before_push, cost.reverse_rotation_before_push);
+	cost.collective_cost_test2 = cost.double_rotation + (cost.rotation - cost.double_rotation) + (cost.rotation_before_push - cost.double_rotation);
+	cost.collective_cost_test3 = cost.double_reverse_rotation + (cost.reverse_rotation - cost.double_reverse_rotation) + (cost.reverse_rotation_before_push - cost.double_reverse_rotation);
+
+	cost.collective_cost = get_min_int(cost.collective_cost_test1, get_min_int(cost.collective_cost_test2, cost.collective_cost_test3));
+
+	// printf("num1: %d\n", num1);
+	// printf("num2: %d\n", num2);
+	// printf("num3: %d\n", num3);
 
 	return (cost);
 }
@@ -122,41 +134,74 @@ void print_cost(t_cost cost)
 	printf("[ab] rotation: %d\n", cost.double_rotation);
 	printf("[ab] reverse_rotation: %d\n", cost.double_reverse_rotation);
 
+	printf("[cost] collective_cost_test1: %d\n", cost.collective_cost_test1);
+	printf("[cost] collective_cost_test2: %d\n", cost.collective_cost_test2);
+	printf("[cost] collective_cost_test3: %d\n", cost.collective_cost_test3);
 	printf("[cost] collective_cost: %d\n\n\n", cost.collective_cost);
 }
 
 void exe_cost(t_cost cost, t_node **a, t_node **b)
 {
-	if (cost.rotation_before_push < cost.reverse_rotation_before_push)
-		while (cost.rotation_before_push--)
+	// print_cost(cost);
+	if (cost.collective_cost == cost.collective_cost_test1)
+	{
+		if (cost.rotation_before_push < cost.reverse_rotation_before_push)
+			while (cost.rotation_before_push--)
+			{
+				rotate_node(a);
+				printf("ra\n");
+			}
+		else
+			while (cost.reverse_rotation_before_push--)
+			{
+				reverse_rotate_node(a);
+				printf("rra\n");
+			}
+		if (cost.rotation < cost.reverse_rotation)
+			while (cost.rotation--)
+			{
+				rotate_node(b);
+				printf("rb\n");
+			}
+		else
+			while (cost.reverse_rotation--)
+			{
+				reverse_rotate_node(b);
+				printf("rrb\n");
+			}
+	}
+	else if (cost.collective_cost == cost.collective_cost_test2)
+	{
+		while (cost.double_rotation--)
 		{
 			rotate_node(a);
-			printf("ra\n");
+			rotate_node(b);
+			printf("rr\n");
+			cost.rotation -= 1;
+			cost.rotation_before_push -= 1;
 		}
-	else
-		while (cost.reverse_rotation_before_push--)
+		cost.collective_cost = cost.collective_cost_test1;
+		exe_cost(cost, a, b);
+	}
+	else if (cost.collective_cost == cost.collective_cost_test3)
+	{
+		while (cost.double_reverse_rotation--)
 		{
 			reverse_rotate_node(a);
-			printf("rra\n");
-		}
-	if (cost.rotation < cost.reverse_rotation)
-		while (cost.rotation--)
-		{
-			rotate_node(b);
-			printf("rb\n");
-		}
-	else
-		while (cost.reverse_rotation--)
-		{
 			reverse_rotate_node(b);
-			printf("rrb\n");
+			printf("rrr\n");
+			cost.reverse_rotation -= 1;
+			cost.reverse_rotation_before_push -= 1;
 		}
+		cost.collective_cost = cost.collective_cost_test1;
+		exe_cost(cost, a, b);
+	}
 }
 
 t_cost get_best_cost(t_node *a, t_node *b)
 {
 	t_node *a_node = a;
-	t_cost cost_best = {-1, -1, -1, -1, -1, -1, -1};
+	t_cost cost_best = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 	while (a_node)
 	{
 		// printf("node: %d\n", a_node->data);
@@ -248,6 +293,7 @@ void	algo(t_node **a, t_node **b)
 	}
 
 	// print_node(*a);
+	// printf("is_sorted %d\n", is_sorted(*a));
 
 
 

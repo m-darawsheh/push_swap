@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:10 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/08 09:53:37 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/08 11:07:33 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct t_node
 void	parse_arg(int argc, char *argv[], t_node **head);
 long	my_atoi(const char *nptr);
 void	ft_add_back(t_node **head, int data);
-void ft_add_front(t_node **head, int data);
+void	ft_add_front(t_node **head, int data);
 
 void	free_protection(t_node *node);
 void	check_if_max_min(int argc, char *argv[]);

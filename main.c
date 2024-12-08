@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:24:01 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/08 09:55:21 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/08 10:56:49 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,13 @@ int find_max_data(t_node *node)
 
 bool	is_sorted(t_node *node)
 {
-	t_node	*min = get_min(node);
-	t_node	*temp = min;
-	while (true)
+	while (node->next)
 	{
-		if (min->data > min->prev->data && min->prev->data != temp->data)
+		if (node->data > node->next->data)
 			return (false);
-		min = min->prev;
-		if (!min->prev)
-		{
-			min = get_last(node);
-		}
-		if (temp->data == min->data)
-			return (true);
+		node = node->next;
 	}
+	return (true);
 }
 
 
