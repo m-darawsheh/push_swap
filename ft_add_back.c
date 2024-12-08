@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_back.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamzah <hamzah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:50 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/05 23:03:07 by hamzah           ###   ########.fr       */
+/*   Updated: 2024/12/08 09:53:24 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,25 @@ void	ft_add_back(t_node **head, int data)
 			last = last->next;
 		last->next = new_node;
 		new_node->prev = last;
+	}
+}
+
+void ft_add_front(t_node **head, int data)
+{
+	t_node *new_node;
+
+	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		free_protection(new_node);
+	new_node->data = data;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	if (*head == NULL)
+		*head = new_node;
+	else
+	{
+		new_node->next = *head;
+		(*head)->prev = new_node;
+		*head = new_node;
 	}
 }

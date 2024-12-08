@@ -14,16 +14,19 @@ t_node *get_min(t_node *stack)
 
 	return (min);
 }
-// t_node  *get_max(t_node *stack)
-// {
-//	 t_node  *max = stack;
-//	 while (stack)
-//	 {
-//		 if (stack->data > max->data)
-//			 max = stack;
-//		 stack = stack->next;
-//	 }
-// }
+t_node  *get_max(t_node *stack)
+{
+	t_node *max = stack;
+
+	while (stack)
+	{
+		if (stack->data > max->data)
+			max = stack;
+		stack = stack->next;
+	}
+
+	return (max);
+}
 
 t_node *get_last(t_node *stack)
 {
@@ -36,12 +39,13 @@ t_node *get_last(t_node *stack)
 
 int calc_rotation(int length, int index)
 {
-	return length - index - 1;
+	(void)length;
+	return index;
 }
 
 int calc_reverse_rotation(int length, int index)
 {
-	return (index + 1);
+	return index == 0 ? 0 : length - index;
 }
 
 typedef struct s_cost
@@ -80,6 +84,14 @@ t_cost calc_cost(t_node node, t_node *a, t_node *b)
 		if (temp->data == min->data)
 			break;
 	}
+
+
+	if(min->next)
+		min = min->next;
+	else
+		min = b;
+
+	// printf("min: %d\n", min->data);
 
 	cost.rotation = calc_rotation(node_len(b), find_index(b, min->data));
 	cost.reverse_rotation = calc_reverse_rotation(node_len(b), find_index(b, min->data));
@@ -143,12 +155,14 @@ void exe_cost(t_cost cost, t_node **a, t_node **b)
 
 t_cost get_best_cost(t_node *a, t_node *b)
 {
-	t_node *a_node = get_last(a);
+	t_node *a_node = a;
 	t_cost cost_best = {-1, -1, -1, -1, -1, -1, -1};
 	while (a_node)
 	{
-
+		// printf("node: %d\n", a_node->data);
 		t_cost cost = calc_cost(*a_node, a, b);
+
+		// print_cost(cost);
 
 		if (cost_best.collective_cost == -1)
 			cost_best = cost;
@@ -158,7 +172,7 @@ t_cost get_best_cost(t_node *a, t_node *b)
 
 		// printf("node: %d\n", a_node->data);
 		// print_cost(cost);
-		a_node = a_node->prev;
+		a_node = a_node->next;
 	}
 
 	return (cost_best);
@@ -173,9 +187,13 @@ void	algo(t_node **a, t_node **b)
 
 	push_to_node(a, b);
 	push_to_node(a, b);
+	// push_to_node(a, b);
 	printf("pb\n");
+	// printf("pb\n");
 	printf("pb\n");
 
+	// print_node(*a);
+	// print_node(*b);
 	// push_to_node(a, b);
 	// printf("pb\n");
 	// printf("pb\n");
@@ -190,8 +208,8 @@ void	algo(t_node **a, t_node **b)
 
 	// printf("\n");
 
-	t_node *last_a;
-	while ((last_a = get_last(*a)))
+	t_node *temp;
+	while ((temp = *a))
 	{
 		t_cost cost_best = get_best_cost(*a, *b);
 
@@ -205,12 +223,31 @@ void	algo(t_node **a, t_node **b)
 
 		push_to_node(a, b);
 		printf("pb\n");
-
 	}
 	// print_node(*a);
 	// print_node(*b);
-	printf("is_sorted %d\n", is_sorted(*b));
+	// printf("is_sorted %d\n", is_sorted(*b));
 
+	t_node *max = get_max(*b);
+	// printf("max: %d\n", max->data);
+
+	int routations = calc_rotation(node_len(*b), find_index(*b, max->data));
+	// printf("routations: %d\n", routations);
+	while (routations--)
+	{
+		rotate_node(b);
+		printf("rb\n");
+	}
+
+	t_node *i;
+	while ((i = *b))
+	{
+		printf("pa\n");
+		push_to_node(b, a);
+		// printf("node: %d\n", i->data);
+	}
+
+	// print_node(*a);
 
 
 

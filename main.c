@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:24:01 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/08 08:54:40 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/08 09:55:21 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,14 @@ int	main(int argc, char **argv)
 	b = NULL;
 
 	parse_arg(argc, argv, &a);
+	// print_node(a);
+	// print_node(b);
+
+	// // rotate_node(&a);
+	// // reverse_rotate_node(&a);
+	// push_to_node(&a, &b);
+	// push_to_node(&a, &b);
+
 	// print_node(a);
 	// print_node(b);
 

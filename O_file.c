@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   O_file.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:35:30 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/09 12:19:28 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/08 09:54:47 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int last_data(t_node *node)
 void	delete_last_node(t_node **node)
 {
     t_node *temp = *node;
-	
+
     if (*node == NULL)
         return;
     if (temp->next == NULL) {
@@ -44,6 +44,20 @@ void	delete_last_node(t_node **node)
     free(last_node);
 }
 
+void delete_first_node(t_node **node)
+{
+	t_node *temp = *node;
+	if (*node == NULL)
+		return;
+	if (temp->next == NULL) {
+		free(temp);
+		*node = NULL;
+		return;
+	}
+	*node = (*node)->next;
+	(*node)->prev = NULL;
+	free(temp);
+}
 
 
 void swap_last_two(t_node **head)
@@ -79,38 +93,36 @@ void	push_to_node(t_node **stack1, t_node **stack2)
 		exit(0);
 	}
 	temp = *stack1;
-	while (temp->next)
-		temp = temp->next;
 	data = temp->data;
-	// printf("the last data from b is ::: %d\n", data);
-	// check list b befor delete last node
-	ft_add_back(stack2, data);
-	delete_last_node(stack1);
+	delete_first_node(stack1);
+	ft_add_front(stack2, data);
 }
 
 void reverse_rotate_node(t_node **node)
 {
-    t_node *first;
-    t_node *last;
+	t_node *last;
+	t_node *second_last;
 
-    if (!node || !(*node) || !(*node)->next)
+	if (!node || !(*node) || !(*node)->next)
 	{
 		printf("list is empty\n");
 		exit(0);
 	}
 
-    first = *node;
+	second_last = *node;
+	while (second_last->next && second_last->next->next)
+	{
+		second_last = second_last->next;
+	}
 
-    *node = (*node)->next;
-    (*node)->prev = NULL;
 
-    last = *node;
-    while (last->next)
-        last = last->next;
+	last = second_last->next;
+	second_last->next = NULL;
 
-    last->next = first;
-    first->prev = last;
-    first->next = NULL;
+	last->next = *node;
+	(*node)->prev = last;
+	last->prev = NULL;
+	*node = last;
 }
 
 
@@ -134,29 +146,27 @@ void rrr(t_node **a, t_node **b)
 
 
 
-void rotate_node(t_node **a)
+void rotate_node(t_node **node)
 {
-	t_node *last;
-	t_node *second_last;
+    t_node *first;
+    t_node *last;
 
-	if (!a || !(*a) || !(*a)->next)
+    if (!node || !(*node) || !(*node)->next)
 	{
 		printf("list is empty\n");
 		exit(0);
 	}
 
-	second_last = *a;
-	while (second_last->next && second_last->next->next)
-	{
-		second_last = second_last->next;
-	}
+    first = *node;
 
+    *node = (*node)->next;
+    (*node)->prev = NULL;
 
-	last = second_last->next;
-	second_last->next = NULL;
+    last = *node;
+    while (last->next)
+        last = last->next;
 
-	last->next = *a;
-	(*a)->prev = last;
-	last->prev = NULL;
-	*a = last;
+    last->next = first;
+    first->prev = last;
+    first->next = NULL;
 }
