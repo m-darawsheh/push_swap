@@ -1,24 +1,36 @@
 SRCS		= check.c main.c my_atoi.c parse_arg.c strlen.c free_protection.c ft_add_back.c ft_isalpha_edit.c O_file.c algo.c
 
-OBJS		= $(SRCS:.c=.o)
+OBJS		= $(SRCS:%.c=obj/%.o)
 
 
 CC			= cc
-CFLAGS		= 
+CFLAGS		=
 NAME		= push_swap
 
 
-all: $(NAME)
+all: libtrue $(NAME)
+
+libtrue:
+	make -C ./libtrue
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -Llibtrue -ltrue
+
+obj/%.o: %.c
+	mkdir -p obj
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJS)
+	make -C ./libtrue clean
+	rm -rf obj
 
 fclean: clean
+	make -C ./libtrue fclean
 	rm -f $(NAME)
 
-re: fclean $(NAME)
+re: fclean libtrue $(NAME)
 
-.PHONY: clean fclean all re
+clone:
+	gc -b linked_list git@github.com:AhmedHodiani/libtrue.git
+
+.PHONY: clean fclean all re libtrue

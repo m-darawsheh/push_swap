@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:10 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/08 11:07:33 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/08 12:21:11 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,22 @@ void	check_if_duplicate(int argc, char *argv[]);
 void	check_if_char(int argc, char *argv[]);
 int		ft_isalpha_edit(char *c);
 bool	check_rubbish_sign(const char *nptr);
-t_node	*ft_create_b(int argc);
 size_t	my_strlen(char *str);
 void	error_sign(int argc, char *argv[]);
-void	swap_last_two(t_node **head);
+
 void	print_node(t_node *node);
-void	delete_last_node(t_node **node);
+
 void	push_to_node(t_node **head,t_node **b);
+
 void	reverse_rotate_node(t_node **node);
 void	rotate_node(t_node **a);
-void	ss(t_node **a, t_node **b);
-void	rr(t_node **a, t_node **b);
-void	rrr(t_node **a, t_node **b);
-int		find_min_data(t_node *node);
-void	S_kh(t_node **head);
 bool	is_sorted(t_node *node);
+
 void    algo(t_node **a, t_node **b);
 int		find_index(t_node *node, int data);
 int	node_len(t_node *node);
+
 t_node *get_min(t_node *stack);
 t_node *get_last(t_node *stack);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:35:30 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/08 09:54:47 by ataher           ###   ########.fr       */
+/*   Updated: 2024/12/08 12:21:23 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,6 @@ int last_data(t_node *node)
 	while (node->next)
 		node = node->next;
 	return (node->data);
-}
-
-void	delete_last_node(t_node **node)
-{
-    t_node *temp = *node;
-
-    if (*node == NULL)
-        return;
-    if (temp->next == NULL) {
-        free(temp);
-        *node = NULL;
-        return;
-    }
-    while (temp->next && temp->next->next) {
-        temp = temp->next;
-    }
-    t_node *last_node = temp->next;
-    temp->next = NULL;
-    free(last_node);
 }
 
 void delete_first_node(t_node **node)
@@ -143,8 +124,6 @@ void rrr(t_node **a, t_node **b)
 	reverse_rotate_node(a);
 	reverse_rotate_node(b);
 }
-
-
 
 void rotate_node(t_node **node)
 {
