@@ -16,7 +16,7 @@ def generate_unique_random_numbers(count, start, end):
 
 def main():
     # Generate 100 unique random numbers in the range 1 to 1000
-    random_numbers = generate_unique_random_numbers(500, 1, 1000)
+    random_numbers = generate_unique_random_numbers(100, 1, 1000)
     
     # Print the numbers as a single line separated by spaces
     print(" ".join(map(str, random_numbers)))

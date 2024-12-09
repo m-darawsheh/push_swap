@@ -17,18 +17,10 @@ long	my_atoi(const char *nptr)
 	int		i;
 	int		sign;
 	long	result;
-	bool	is_rubbish;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	is_rubbish = false;
-	is_rubbish = check_rubbish_sign(nptr);
-	if (is_rubbish)
-	{
-		printf("ERROR rubbish sign!\n");
-		exit(0);
-	}
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')

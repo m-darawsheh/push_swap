@@ -18,6 +18,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 # include <limits.h>
+# include <unistd.h>
 
 typedef struct t_node
 {
@@ -25,6 +26,18 @@ typedef struct t_node
 	struct t_node	*next;
 	struct t_node	*prev;
 }	t_node;
+
+typedef struct t_number
+{
+	int				total;
+	int				rotation;
+	int				reverse_rotation;
+	int				rotation_a;
+	int				reverse_rotation_a;
+	int				for_top;
+	int				for_right_place;
+}	t_number;
+
 void	ft_add_front(t_node **head, int data);
 void	parse_arg(int argc, char *argv[], t_node **head);
 long	my_atoi(const char *nptr);
@@ -38,7 +51,7 @@ bool	check_rubbish_sign(const char *nptr);
 void	error_sign(int argc, char *argv[]);
 void	swap_last_two(t_node **head);
 void	print_node(t_node *node);
-void	delete_last_node(t_node **node);
+void	delete_first_node(t_node	**node);
 void	push_to_node(t_node **head,t_node **b);
 void	reverse_rotate_node(t_node **node);
 void	rotate_node(t_node **a);
@@ -50,10 +63,25 @@ int		find_max_data(t_node *node);
 bool	is_sorted(t_node *node);
 bool	is_sorted_a(t_node *node);
 void	algo(t_node **a, t_node **b);
-int		last_data(t_node *node);
 int		find_index(t_node *node, int data);
 int		node_len(t_node *node);
 size_t	my_strlen(char *str); 
 t_node	*get_min(t_node *stack);
+t_node	*get_max(t_node *stack);
 t_node	*get_last(t_node *stack);
+int	calc_rotation(int   length, int index);
+int	calc_reverse_rotation(int   length, int index);
+int	HowManyRotation_to_top(t_node	*stack, int	data);
+int	HowManyReverseRotation_to_top(t_node	*stack, int	data);
+int	right_place(t_node	*a, t_node	*b);
+t_node *winner_node(t_node *a, t_node *b);
+bool the_list_is_empty(t_node *stack);
+bool	is_sorted_a(t_node *node);
+void	algo(t_node **a, t_node **b);
+int	find_numberes(t_node	*temp, t_node	*a, t_node	*b, int	data);
+t_number	find_rights(t_node	*temp, t_node	*a, t_node	*b, int	data);
+void do_rotations_a(t_number x, t_node **a);
+void do_rotations_b(t_number x, t_node **b);
+void	make_b_inverse(t_node **b);
+void pushing(t_node **b, t_node **a);
 #endif

@@ -12,25 +12,7 @@
 
 #include "push_swap.h"
 
-bool	check_rubbish_sign(const char *nptr)
-{
-	int	i;
-
-	i = 0;
-	if (nptr[i] == '-' || nptr[i] == '+')
-		i++;
-	while (nptr[i])
-	{
-		if (nptr[i] == '-' || nptr[i] == '+')
-		{
-			return (true);
-		}
-		i++;
-	}
-	return (false);
-}
-
-void	check_if_max_min(int argc, char *argv[])
+void	check_if_max_min(int	argc, char	*argv[])
 {
 	int	i;
 
@@ -51,7 +33,7 @@ void	check_if_max_min(int argc, char *argv[])
 	}
 }
 
-void	check_if_duplicate(int argc, char *argv[])
+void	check_if_duplicate(int	argc, char	*argv[])
 {
 	int	i;
 	int	j;
@@ -73,7 +55,7 @@ void	check_if_duplicate(int argc, char *argv[])
 	}
 }
 
-void	check_if_char(int argc, char *argv[])
+void	check_if_char(int	argc, char	*argv[])
 {
 	int	i;
 
@@ -90,7 +72,7 @@ void	check_if_char(int argc, char *argv[])
 }
 
 
-void	error_sign(int argc, char *argv[])
+void	error_sign(int	argc, char	*argv[])
 {
 	int	i;
 
@@ -102,6 +84,6 @@ void	error_sign(int argc, char *argv[])
 			printf("ERROR only sign!\n");
 			exit(0);
 		}
-		i++;	
+		i++;
 	}
 }

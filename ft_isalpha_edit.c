@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_isalpha_edit(char *c)
+int	ft_isalpha_edit(char	*c)
 {
 	int	i;
 

@@ -13,7 +13,7 @@ int	node_len(t_node *node)
 }
 
 
-int		find_index(t_node *node, int data)
+int	find_index(t_node *node, int data)
 {
 	int	i;
 
@@ -60,8 +60,11 @@ int find_max_data(t_node *node)
 
 bool	is_sorted(t_node *node)
 {
-	t_node	*min = get_min(node);
-	t_node	*temp = min;
+	t_node	*min;
+	t_node	*temp;
+
+	min = get_min(node);
+	temp = min;
 	while (true)
 	{
 		if (min->data > min->prev->data && min->prev->data != temp->data)

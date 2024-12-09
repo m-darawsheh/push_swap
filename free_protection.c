@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	free_protection(t_node *node)
+void	free_protection(t_node	*node)
 {
 	t_node	*temp;
 

@@ -23,7 +23,7 @@ void	print_node(t_node *node)
 	printf("\n");
 }
 
-int	main(int argc, char **argv)
+int	main(int	argc, char	**argv)
 {
 	t_node	*a;
 	t_node	*b;
@@ -32,22 +32,6 @@ int	main(int argc, char **argv)
 	b = NULL;
 
 	parse_arg(argc, argv, &a);
-	// print_node(a);
-	// print_node(b);
-
-	// push_to_node(&a, &b);
-	// push_to_node(&a, &b);
-	// push_to_node(&a, &b);
-
-	// reverse_rotate_node(&b);
-
 	algo(&a, &b);
-
-	// print_node(a);
-	// print_node(b);
-	// print_node(a);
-	// is_sorted_a(a);
 	return (0);
 }
-
-
