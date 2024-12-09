@@ -56,12 +56,12 @@ void do_rotations_a(t_number x, t_node **a)
 		if (x.rotation_a < x.reverse_rotation_a)
 		{
 			rotate_node(a);
-			write(1, "ra\n", 3);
+			printf("ra\n");
 		}
 		else
 		{
 			reverse_rotate_node(a);
-			write(1, "rra\n", 4);
+			printf("rra\n");
 		}
 		i++;
 	}
@@ -77,12 +77,12 @@ void do_rotations_b(t_number x, t_node **b)
 		if (x.rotation < x.reverse_rotation)
 		{
 			rotate_node(b);
-			write(1, "rb\n", 3);
+			printf("rb\n");
 		}
 		else
 		{
 			reverse_rotate_node(b);
-			write(1, "rrb\n", 4);
+			printf("rrb\n");
 		}
 		i++;
 	}
@@ -99,8 +99,8 @@ void	make_b_inverse(t_node **b)
 		x.for_top = x.rotation;
 	else
 		x.for_top = x.reverse_rotation;
-
-	while (x.for_top != 0)
+	int i = 0;
+	while (i < x.for_top)
 	{
 		if (x.rotation < x.reverse_rotation)
 		{
@@ -112,7 +112,7 @@ void	make_b_inverse(t_node **b)
 			reverse_rotate_node(b);
 			printf("rrb\n");
 		}
-		(x.for_top)--;
+		i++;
 	}
 }
 

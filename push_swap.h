@@ -71,8 +71,6 @@ t_node	*get_max(t_node *stack);
 t_node	*get_last(t_node *stack);
 int	calc_rotation(int   length, int index);
 int	calc_reverse_rotation(int   length, int index);
-int	HowManyRotation_to_top(t_node	*stack, int	data);
-int	HowManyReverseRotation_to_top(t_node	*stack, int	data);
 int	right_place(t_node	*a, t_node	*b);
 t_node *winner_node(t_node *a, t_node *b);
 bool the_list_is_empty(t_node *stack);
