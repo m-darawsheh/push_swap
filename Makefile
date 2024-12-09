@@ -4,7 +4,7 @@ OBJS		= $(SRCS:.c=.o)
 
 
 CC			= cc
-CFLAGS		= 
+CFLAGS		= -Werror -Wall -Wextra
 NAME		= push_swap
 
 
