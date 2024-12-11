@@ -97,7 +97,7 @@ int		find_index(t_stack stack, int content)
 		stack.head = stack.head->next;
 		i++;
 	}
-	printf( "error input data\n");
+	ft_printf( "error input data\n");
 	return (-1);
 }
 
@@ -139,19 +139,19 @@ t_cost calc_cost(t_node node, t_stack *a, t_stack *b)
 
 void print_cost(t_cost cost)
 {
-	printf("[a] rotation: %d\n", cost.rotation_before_push);
-	printf("[a] reverse_rotation: %d\n", cost.reverse_rotation_before_push);
+	ft_printf("[a] rotation: %d\n", cost.rotation_before_push);
+	ft_printf("[a] reverse_rotation: %d\n", cost.reverse_rotation_before_push);
 
-	printf("[b] rotation: %d\n", cost.rotation);
-	printf("[b] reverse_rotation: %d\n", cost.reverse_rotation);
+	ft_printf("[b] rotation: %d\n", cost.rotation);
+	ft_printf("[b] reverse_rotation: %d\n", cost.reverse_rotation);
 
-	printf("[ab] rotation: %d\n", cost.double_rotation);
-	printf("[ab] reverse_rotation: %d\n", cost.double_reverse_rotation);
+	ft_printf("[ab] rotation: %d\n", cost.double_rotation);
+	ft_printf("[ab] reverse_rotation: %d\n", cost.double_reverse_rotation);
 
-	printf("[cost] collective_cost_test1: %d\n", cost.collective_cost_test1);
-	printf("[cost] collective_cost_test2: %d\n", cost.collective_cost_test2);
-	printf("[cost] collective_cost_test3: %d\n", cost.collective_cost_test3);
-	printf("[cost] collective_cost: %d\n\n\n", cost.collective_cost);
+	ft_printf("[cost] collective_cost_test1: %d\n", cost.collective_cost_test1);
+	ft_printf("[cost] collective_cost_test2: %d\n", cost.collective_cost_test2);
+	ft_printf("[cost] collective_cost_test3: %d\n", cost.collective_cost_test3);
+	ft_printf("[cost] collective_cost: %d\n\n\n", cost.collective_cost);
 }
 
 void exe_cost(t_cost cost, t_stack *a, t_stack *b)
@@ -162,25 +162,25 @@ void exe_cost(t_cost cost, t_stack *a, t_stack *b)
 		{
 			a->shift(a, -cost.rotation_before_push);
 			while (cost.rotation_before_push--)
-				printf("ra\n");
+				ft_printf("ra\n");
 		}
 		else
 		{
 			a->shift(a, cost.reverse_rotation_before_push);
 			while (cost.reverse_rotation_before_push--)
-				printf("rra\n");
+				ft_printf("rra\n");
 		}
 		if (cost.rotation < cost.reverse_rotation)
 		{
 			b->shift(b, -cost.rotation);
 			while (cost.rotation--)
-				printf("rb\n");
+				ft_printf("rb\n");
 		}
 		else
 		{
 			b->shift(b, cost.reverse_rotation);
 			while (cost.reverse_rotation--)
-				printf("rrb\n");
+				ft_printf("rrb\n");
 		}
 	}
 	else if (cost.collective_cost == cost.collective_cost_test2)
@@ -190,7 +190,7 @@ void exe_cost(t_cost cost, t_stack *a, t_stack *b)
 		cost.rotation -= cost.double_rotation;
 		cost.rotation_before_push -= cost.double_rotation;
 		while (cost.double_rotation--)
-			printf("rr\n");
+			ft_printf("rr\n");
 		cost.collective_cost = cost.collective_cost_test1;
 		exe_cost(cost, a, b);
 	}
@@ -201,7 +201,7 @@ void exe_cost(t_cost cost, t_stack *a, t_stack *b)
 		cost.reverse_rotation -= cost.double_reverse_rotation;
 		cost.reverse_rotation_before_push -= cost.double_reverse_rotation;
 		while (cost.double_reverse_rotation--)
-			printf("rrr\n");
+			ft_printf("rrr\n");
 		cost.collective_cost = cost.collective_cost_test1;
 		exe_cost(cost, a, b);
 	}
@@ -229,8 +229,8 @@ void	algo(t_stack *a, t_stack *b)
 	a->pop(a, 0);
 	b->insert(b, node_dup(a->head), 0);
 	a->pop(a, 0);
-	printf("pb\n");
-	printf("pb\n");
+	ft_printf("pb\n");
+	ft_printf("pb\n");
 
 	t_node *temp;
 	while ((temp = a->head))
@@ -242,11 +242,11 @@ void	algo(t_stack *a, t_stack *b)
 		// a->log.simple(*a);
 		// b->log.simple(*b);
 
-		// printf("temp: %d\n", temp->content);
+		// ft_printf("temp: %d\n", temp->content);
 
 		b->insert(b, node_dup(a->head), 0);
 		a->pop(a, 0);
-		printf("pb\n");
+		ft_printf("pb\n");
 	}
 
 	// a->log.simple(*a);
@@ -259,12 +259,12 @@ void	algo(t_stack *a, t_stack *b)
 	while (routations--)
 	{
 		b->shift(b, -1);
-		printf("rb\n");
+		ft_printf("rb\n");
 	}
 	t_node *i;
 	while ((i = b->head))
 	{
-		printf("pa\n");
+		ft_printf("pa\n");
 		a->insert(a, node_dup(b->head), 0);
 		b->pop(b, 0);
 	}

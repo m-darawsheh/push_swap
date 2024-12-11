@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:41 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/06 10:46:14 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:45:12 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	check_if_max_min(int argc, char *argv[])
 	{
 		if (my_strlen(argv[i]) > 10)
 		{
-			printf("ERROR max or min!\n");
+			ft_printf("ERROR max or min!\n");
 			exit(0);
 		}
 		if (my_atoi(argv[i]) > 2147483647 || my_atoi(argv[i]) < -2147483648)
 		{
-			printf("ERROR max or min!\n");
+			ft_printf("ERROR max or min!\n");
 			exit(0);
 		}
 		i++;
@@ -64,7 +64,7 @@ void	check_if_duplicate(int argc, char *argv[])
 		{
 			if (i != j && my_atoi(argv[i]) == my_atoi(argv[j]))
 			{
-				printf("ERROR duplicate!\n");
+				ft_printf("ERROR duplicate!\n");
 				exit(0);
 			}
 			j++;
@@ -82,7 +82,7 @@ void	check_if_char(int argc, char *argv[])
 	{
 		if (ft_isalpha_edit(argv[i]))
 		{
-			printf("ERROR char!\n");
+			ft_printf("ERROR char!\n");
 			exit(0);
 		}
 		i++;
@@ -99,9 +99,9 @@ void	error_sign(int argc, char *argv[])
 	{
 		if ((argv[i][0] == '-' || argv[i][0] == '+') && argv[i][1] == '\0')
 		{
-			printf("ERROR only sign!\n");
+			ft_printf("ERROR only sign!\n");
 			exit(0);
 		}
-		i++;	
+		i++;
 	}
 }
