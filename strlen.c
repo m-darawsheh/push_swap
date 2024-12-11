@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:35:30 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/06 11:11:56 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:37:23 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 size_t	my_strlen(char *str)
 {
-	size_t	i;
-	bool is_sign;
-	
+	bool	is_sign;
+	size_t		i;
+
 	is_sign = false;
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
@@ -26,7 +26,6 @@ size_t	my_strlen(char *str)
 	}
 	while (str[i] != '\0')
 		i++;
-
 	if (is_sign)
 	{
 		return (i - 1);

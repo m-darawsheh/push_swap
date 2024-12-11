@@ -1,5 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers_2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 11:51:21 by mdarawsh          #+#    #+#             */
+/*   Updated: 2024/12/11 12:39:39 by mdarawsh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 t_node	*get_min(t_node	*stack)
 {
@@ -12,7 +23,6 @@ t_node	*get_min(t_node	*stack)
 			min = stack;
 		stack = stack->next;
 	}
-
 	return (min);
 }
 
@@ -27,7 +37,6 @@ t_node	*get_max(t_node	*stack)
 			max = stack;
 		stack = stack->next;
 	}
-
 	return (max);
 }
 
@@ -40,13 +49,13 @@ t_node	*get_last(t_node	*stack)
 	return (stack);
 }
 
-int calc_rotation(int   length, int index)
+int	calc_rotation(int length, int index)
 {
 	(void)length;
-	return index;
+	return (index);
 }
 
-int	calc_reverse_rotation(int	length, int	index)
+int	calc_reverse_rotation(int length, int index)
 {
 	if (index == 0)
 		return (0);

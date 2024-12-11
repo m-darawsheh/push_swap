@@ -6,20 +6,20 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:46 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/02 09:56:28 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:57:23 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_protection(t_node	*node)
+void	free_protection(t_node	**node)
 {
 	t_node	*temp;
 
-	while (node)
+	while (*node)
 	{
-		temp = node;
-		node = node->next;
+		temp = *node;
+		*node = (*node)->next;
 		free(temp);
 	}
 	exit(0);

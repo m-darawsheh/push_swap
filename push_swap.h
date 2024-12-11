@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:10 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/02 09:57:15 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:00:33 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ void	ft_add_front(t_node **head, int data);
 void	parse_arg(int argc, char *argv[], t_node **head);
 long	my_atoi(const char *nptr);
 void	ft_add_back(t_node **head, int data);
-void	free_protection(t_node *node);
-void	check_if_max_min(int argc, char *argv[]);
-void	check_if_duplicate(int argc, char *argv[]);
-void	check_if_char(int argc, char *argv[]);
+void	free_protection(t_node **head);
+void	check_if_max_min(int argc, char *argv[],t_node **head);
+void	check_if_duplicate(int argc, char *argv[],t_node **head);
+void	check_if_char(int argc, char *argv[],t_node **head);
 int		ft_isalpha_edit(char *c);
-bool	check_rubbish_sign(const char *nptr);
-void	error_sign(int argc, char *argv[]);
+void	error_sign(int argc, char *argv[],t_node **head);
 void	swap_last_two(t_node **head);
 void	print_node(t_node *node);
 void	delete_first_node(t_node	**node);

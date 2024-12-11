@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 11:51:24 by mdarawsh          #+#    #+#             */
+/*   Updated: 2024/12/11 11:57:03 by mdarawsh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
 int	node_len(t_node *node)
 {
 	int	len;
@@ -12,7 +25,6 @@ int	node_len(t_node *node)
 	return (len);
 }
 
-
 int	find_index(t_node *node, int data)
 {
 	int	i;
@@ -25,7 +37,7 @@ int	find_index(t_node *node, int data)
 		node = node->next;
 		i++;
 	}
-	printf( "error input dataaa\n");
+	printf("error input dataaa\n");
 	return (-1);
 }
 
@@ -43,7 +55,7 @@ int	find_min_data(t_node *node)
 	return (find_index(node, min->data));
 }
 
-int find_max_data(t_node *node)
+int	find_max_data(t_node *node)
 {
 	t_node	*max;
 
@@ -56,7 +68,6 @@ int find_max_data(t_node *node)
 	}
 	return (find_index(node, max->data));
 }
-
 
 bool	is_sorted(t_node *node)
 {

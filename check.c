@@ -6,13 +6,13 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:41 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/19 14:56:46 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:55:18 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_if_max_min(int	argc, char	*argv[])
+void	check_if_max_min(int argc, char *argv[],t_node **head)
 {
 	int	i;
 
@@ -22,18 +22,20 @@ void	check_if_max_min(int	argc, char	*argv[])
 		if (my_strlen(argv[i]) > 10)
 		{
 			printf("ERROR max or min!\n");
+			free_protection(head);
 			exit(0);
 		}
 		if (my_atoi(argv[i]) > 2147483647 || my_atoi(argv[i]) < -2147483648)
 		{
 			printf("ERROR max or min!\n");
+			free_protection(head);
 			exit(0);
 		}
 		i++;
 	}
 }
 
-void	check_if_duplicate(int	argc, char	*argv[])
+void	check_if_duplicate(int argc, char *argv[],t_node **head)
 {
 	int	i;
 	int	j;
@@ -47,6 +49,7 @@ void	check_if_duplicate(int	argc, char	*argv[])
 			if (i != j && my_atoi(argv[i]) == my_atoi(argv[j]))
 			{
 				printf("ERROR duplicate!\n");
+				free_protection(head);
 				exit(0);
 			}
 			j++;
@@ -55,7 +58,7 @@ void	check_if_duplicate(int	argc, char	*argv[])
 	}
 }
 
-void	check_if_char(int	argc, char	*argv[])
+void	check_if_char(int argc, char *argv[],t_node **head)
 {
 	int	i;
 
@@ -65,14 +68,14 @@ void	check_if_char(int	argc, char	*argv[])
 		if (ft_isalpha_edit(argv[i]))
 		{
 			printf("ERROR char!\n");
+			free_protection(head);
 			exit(0);
 		}
 		i++;
 	}
 }
 
-
-void	error_sign(int	argc, char	*argv[])
+void	error_sign(int argc, char *argv[],t_node **head)
 {
 	int	i;
 
@@ -82,6 +85,7 @@ void	error_sign(int	argc, char	*argv[])
 		if ((argv[i][0] == '-' || argv[i][0] == '+') && argv[i][1] == '\0')
 		{
 			printf("ERROR only sign!\n");
+			free_protection(head);
 			exit(0);
 		}
 		i++;

@@ -1,52 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 11:50:28 by mdarawsh          #+#    #+#             */
+/*   Updated: 2024/12/11 12:43:43 by mdarawsh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-
-bool the_list_is_empty(t_node *stack)
-{
-	if (!stack)
-		return (true);
-	return (false);
-}
-
-bool	is_sorted_a(t_node *node)
-{
-	t_node	*temp;
-
-	temp = node;
-	while (temp->next)
-	{
-		if (temp->data > temp->next->data)
-			{
-				printf("the list is not sorted\n");
-				return (false);
-			}
-		temp = temp->next;
-	}
-	printf("the list is sorted\n");
-	return (true);
-}
-
-t_number	find_rights(t_node	*temp, t_node	*a, t_node	*b, int	data)
-{
-	t_number	x;
-
-	x.rotation = calc_rotation(node_len(b), find_index(b, data));
-	x.reverse_rotation = calc_reverse_rotation(node_len(b), find_index(b, data));
-	if (x.rotation < x.reverse_rotation)
-		x.for_right_place = x.rotation;
-	else
-		x.for_right_place = x.reverse_rotation;
-	x.rotation_a = calc_rotation(node_len(a), find_index(a, temp->data));
-	x.reverse_rotation_a = calc_reverse_rotation(node_len(a), find_index(a, temp->data));
-	if (x.rotation_a < x.reverse_rotation_a)    
-		x.for_top = x.rotation_a;
-	else
-		x.for_top = x.reverse_rotation_a;
-	x.total = x.for_top + x.for_right_place;
-	return (x);
-}
-
-void do_rotations_a(t_number x, t_node **a)
+void	do_rotations_a(t_number x, t_node **a)
 {
 	int	i;
 
@@ -67,7 +33,7 @@ void do_rotations_a(t_number x, t_node **a)
 	}
 }
 
-void do_rotations_b(t_number x, t_node **b)
+void	do_rotations_b(t_number x, t_node **b)
 {
 	int	i;
 
@@ -86,12 +52,13 @@ void do_rotations_b(t_number x, t_node **b)
 		}
 		i++;
 	}
-
 }
+
 void	make_b_inverse(t_node **b)
 {
 	t_node	*max;
 	t_number	x;
+	
 	max = get_max(*b);
 	x.rotation = calc_rotation(node_len(*b), find_index(*b, max->data));
 	x.reverse_rotation = calc_reverse_rotation(node_len(*b), find_index(*b, max->data));
@@ -142,9 +109,9 @@ void	algo(t_node **a, t_node **b)
 	while (!the_list_is_empty(*a))
 	{
 		t_node *winner = winner_node(*a, *b);
-		int Data = right_place(winner, *b);
+		int data = right_place(winner, *b);
 
-		t_number x = find_rights(winner, *a, *b, Data);
+		t_number x = find_rights(winner, *a, *b, data);
 
 		do_rotations_a(x, a);
 		do_rotations_b(x, b);
