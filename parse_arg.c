@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamzah <hamzah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:24:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/05 23:04:09 by hamzah           ###   ########.fr       */
+/*   Updated: 2024/12/11 11:21:52 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	parse_arg(int argc, char *argv[], t_node **head)
+void	parse_arg(int argc, char *argv[], t_stack *stack)
 {
 	int	i;
 
@@ -23,17 +23,8 @@ void	parse_arg(int argc, char *argv[], t_node **head)
 	i = 1;
 	while (i < argc)
 	{
-		if (!*head)
-		{
-			*head = malloc(sizeof(t_node));
-			if (!*head)
-				free_protection(*head);
-			(*head)->data = my_atoi(argv[i]);
-			(*head)->prev = NULL;
-			(*head)->next = NULL;
-		}
-		else
-			ft_add_back(head, my_atoi(argv[i]));
+		t_node *node = node_init(my_atoi(argv[i]));
+		stack->insert(stack, node, -1);
 		i++;
 	}
 }

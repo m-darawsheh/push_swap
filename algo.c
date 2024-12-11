@@ -1,41 +1,55 @@
 #include "push_swap.h"
 
-t_node *get_min(t_node *stack)
+t_node *get_min(t_stack stack)
 {
-	t_node *min = stack;
+	t_node *min = stack.head;
 
-	while (stack)
+	while (stack.head)
 	{
-		if (stack->data < min->data)
-			min = stack;
-		stack = stack->next;
+		if (stack.head->content < min->content)
+			min = stack.head;
+		stack.head = stack.head->next;
 	}
 
 	return (min);
 }
 
-t_node  *get_max(t_node *stack)
+t_node *get_max(t_stack stack)
 {
-	t_node *max = stack;
+	t_node *max = stack.head;
 
-	while (stack)
+	while (stack.head)
 	{
-		if (stack->data > max->data)
-			max = stack;
-		stack = stack->next;
+		if (stack.head->content > max->content)
+			max = stack.head;
+		stack.head = stack.head->next;
 	}
 
 	return (max);
 }
 
-t_node *get_last(t_node *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
-}
+// t_node  *get_max(t_node *stack)
+// {
+// 	t_node *max = stack;
+
+// 	while (stack)
+// 	{
+// 		if (stack->data > max->data)
+// 			max = stack;
+// 		stack = stack->next;
+// 	}
+
+// 	return (max);
+// }
+
+// t_node *get_last(t_node *stack)
+// {
+// 	if (!stack)
+// 		return (NULL);
+// 	while (stack->next)
+// 		stack = stack->next;
+// 	return (stack);
+// }
 
 int calc_rotation(int length, int index)
 {
@@ -71,31 +85,47 @@ int get_min_int(int a, int b)
 	return (b);
 }
 
-t_cost calc_cost(t_node node, t_node *a, t_node *b)
+int		find_index(t_stack stack, int content)
+{
+	int	i;
+
+	i = 0;
+	while (stack.head)
+	{
+		if (stack.head->content == content)
+			return (i);
+		stack.head = stack.head->next;
+		i++;
+	}
+	printf( "error input data\n");
+	return (-1);
+}
+
+t_cost calc_cost(t_node node, t_stack *a, t_stack *b)
 {
 	t_cost cost = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	t_node *min = get_min(b);
+	t_node *min = get_min(*b);
 	t_node* temp = min;
-	while (node.data > min->data)
+	while (node.content > min->content)
 	{
 		if (min->prev)
 			min = min->prev;
 		else
-			min = get_last(b);
+			min = b->tail;
 
-		if (temp->data == min->data)
+		if (temp->content == min->content)
 			break;
 	}
 	if(min->next)
 		min = min->next;
 	else
-		min = b;
+		min = b->head;
 
-	cost.rotation = calc_rotation(node_len(b), find_index(b, min->data));
-	cost.reverse_rotation = calc_reverse_rotation(node_len(b), find_index(b, min->data));
+	cost.rotation = calc_rotation(b->size, find_index(*b, min->content));
+	cost.reverse_rotation = calc_reverse_rotation(b->size, find_index(*b, min->content));
 
-	cost.rotation_before_push = calc_rotation(node_len(a), find_index(a, node.data));
-	cost.reverse_rotation_before_push = calc_reverse_rotation(node_len(a), find_index(a, node.data));
+	cost.rotation_before_push = calc_rotation(a->size, find_index(*a, node.content));
+	cost.reverse_rotation_before_push = calc_reverse_rotation(a->size, find_index(*a, node.content));
 
 	cost.double_rotation = get_min_int(cost.rotation, cost.rotation_before_push);
 	cost.double_reverse_rotation = get_min_int(cost.reverse_rotation, cost.reverse_rotation_before_push);
@@ -124,66 +154,62 @@ void print_cost(t_cost cost)
 	printf("[cost] collective_cost: %d\n\n\n", cost.collective_cost);
 }
 
-void exe_cost(t_cost cost, t_node **a, t_node **b)
+void exe_cost(t_cost cost, t_stack *a, t_stack *b)
 {
 	if (cost.collective_cost == cost.collective_cost_test1)
 	{
 		if (cost.rotation_before_push < cost.reverse_rotation_before_push)
+		{
+			a->shift(a, -cost.rotation_before_push);
 			while (cost.rotation_before_push--)
-			{
-				rotate_node(a);
 				printf("ra\n");
-			}
+		}
 		else
+		{
+			a->shift(a, cost.reverse_rotation_before_push);
 			while (cost.reverse_rotation_before_push--)
-			{
-				reverse_rotate_node(a);
 				printf("rra\n");
-			}
+		}
 		if (cost.rotation < cost.reverse_rotation)
+		{
+			b->shift(b, -cost.rotation);
 			while (cost.rotation--)
-			{
-				rotate_node(b);
 				printf("rb\n");
-			}
+		}
 		else
+		{
+			b->shift(b, cost.reverse_rotation);
 			while (cost.reverse_rotation--)
-			{
-				reverse_rotate_node(b);
 				printf("rrb\n");
-			}
+		}
 	}
 	else if (cost.collective_cost == cost.collective_cost_test2)
 	{
+		a->shift(a, -cost.double_rotation);
+		b->shift(b, -cost.double_rotation);
+		cost.rotation -= cost.double_rotation;
+		cost.rotation_before_push -= cost.double_rotation;
 		while (cost.double_rotation--)
-		{
-			rotate_node(a);
-			rotate_node(b);
 			printf("rr\n");
-			cost.rotation -= 1;
-			cost.rotation_before_push -= 1;
-		}
 		cost.collective_cost = cost.collective_cost_test1;
 		exe_cost(cost, a, b);
 	}
 	else if (cost.collective_cost == cost.collective_cost_test3)
 	{
+		a->shift(a, cost.double_reverse_rotation);
+		b->shift(b, cost.double_reverse_rotation);
+		cost.reverse_rotation -= cost.double_reverse_rotation;
+		cost.reverse_rotation_before_push -= cost.double_reverse_rotation;
 		while (cost.double_reverse_rotation--)
-		{
-			reverse_rotate_node(a);
-			reverse_rotate_node(b);
 			printf("rrr\n");
-			cost.reverse_rotation -= 1;
-			cost.reverse_rotation_before_push -= 1;
-		}
 		cost.collective_cost = cost.collective_cost_test1;
 		exe_cost(cost, a, b);
 	}
 }
 
-t_cost get_best_cost(t_node *a, t_node *b)
+t_cost get_best_cost(t_stack *a, t_stack *b)
 {
-	t_node *a_node = a;
+	t_node *a_node = a->head;
 	t_cost cost_best = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 	while (a_node)
 	{
@@ -197,31 +223,52 @@ t_cost get_best_cost(t_node *a, t_node *b)
 	return (cost_best);
 }
 
-void	algo(t_node **a, t_node **b)
+void	algo(t_stack *a, t_stack *b)
 {
-	push_to_node(a, b);
-	push_to_node(a, b);
+	b->insert(b, node_dup(a->head), 0);
+	a->pop(a, 0);
+	b->insert(b, node_dup(a->head), 0);
+	a->pop(a, 0);
 	printf("pb\n");
 	printf("pb\n");
+
 	t_node *temp;
-	while ((temp = *a))
+	while ((temp = a->head))
 	{
-		t_cost cost_best = get_best_cost(*a, *b);
+		t_cost cost_best = get_best_cost(a, b);
 		exe_cost(cost_best, a, b);
-		push_to_node(a, b);
+
+
+		// a->log.simple(*a);
+		// b->log.simple(*b);
+
+		// printf("temp: %d\n", temp->content);
+
+		b->insert(b, node_dup(a->head), 0);
+		a->pop(a, 0);
 		printf("pb\n");
 	}
+
+	// a->log.simple(*a);
+	// b->log.simple(*b);
+
+	// a->pop(a, 0);
+
 	t_node *max = get_max(*b);
-	int routations = calc_rotation(node_len(*b), find_index(*b, max->data));
+	int routations = calc_rotation(b->size, find_index(*b, max->content));
 	while (routations--)
 	{
-		rotate_node(b);
+		b->shift(b, -1);
 		printf("rb\n");
 	}
 	t_node *i;
-	while ((i = *b))
+	while ((i = b->head))
 	{
 		printf("pa\n");
-		push_to_node(b, a);
+		a->insert(a, node_dup(b->head), 0);
+		b->pop(b, 0);
 	}
+
+	// a->log.simple(*a);
+	// b->log.simple(*b);
 }
