@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:51:37 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 11:51:38 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:40:25 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	reverse_rotate_node(t_node	**a)
 	if (!a || !(*a) || !(*a)->next)
 	{
 		printf("list is empty\n");
-		exit(0);
+		exit(1);
 	}
 
 	second_last = *a;
@@ -68,7 +68,7 @@ void    rotate_node(t_node	**node)
 	if (!node || !(*node) || !(*node)->next)
 	{
 		printf("list is empty\n");
-		exit(0);
+		exit(1);
 	}
 
 	first = *node;

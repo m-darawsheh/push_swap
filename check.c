@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:41 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 12:55:18 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:39:50 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	check_if_max_min(int argc, char *argv[],t_node **head)
 		{
 			printf("ERROR max or min!\n");
 			free_protection(head);
-			exit(0);
+			exit(1);
 		}
 		if (my_atoi(argv[i]) > 2147483647 || my_atoi(argv[i]) < -2147483648)
 		{
 			printf("ERROR max or min!\n");
 			free_protection(head);
-			exit(0);
+			exit(1);
 		}
 		i++;
 	}
@@ -50,7 +50,7 @@ void	check_if_duplicate(int argc, char *argv[],t_node **head)
 			{
 				printf("ERROR duplicate!\n");
 				free_protection(head);
-				exit(0);
+				exit(1);
 			}
 			j++;
 		}
@@ -69,7 +69,7 @@ void	check_if_char(int argc, char *argv[],t_node **head)
 		{
 			printf("ERROR char!\n");
 			free_protection(head);
-			exit(0);
+			exit(1);
 		}
 		i++;
 	}
@@ -86,7 +86,7 @@ void	error_sign(int argc, char *argv[],t_node **head)
 		{
 			printf("ERROR only sign!\n");
 			free_protection(head);
-			exit(0);
+			exit(1);
 		}
 		i++;
 	}

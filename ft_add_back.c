@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:50 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 12:16:10 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:24:11 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_add_back(t_node **head, int data)
 
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
-		free_protection(new_node);
+		free_protection(&new_node);
 	new_node->data = data;
 	new_node->next = NULL;
 	new_node->prev = NULL;
@@ -42,7 +42,7 @@ void	ft_add_front(t_node **head, int data)
 
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
-		free_protection(new_node);
+		free_protection(&new_node);
 	new_node->data = data;
 	new_node->next = NULL;
 	new_node->prev = NULL;

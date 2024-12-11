@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:10 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 13:00:33 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:30:33 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,11 @@ t_node	*get_min(t_node *stack);
 t_node	*get_max(t_node *stack);
 t_node	*get_last(t_node *stack);
 t_number	find_rights(t_node	*temp, t_node	*a, t_node	*b, int	data);
+void	check_first_two(t_node **a);
+void	s_kh(t_node **a);
+void	m_dr(t_node **a, t_node **b);
+void	push_min(t_node **a, t_node **b, t_node *min);
+void	push_max(t_node **a, t_node **b, t_node *max);
+void	double_rra(t_node **a);
+void	double_ra(t_node **a);
 #endif

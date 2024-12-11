@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:46 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 12:57:23 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:40:11 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	free_protection(t_node	**node)
 		*node = (*node)->next;
 		free(temp);
 	}
-	exit(0);
+	exit(1);
 }

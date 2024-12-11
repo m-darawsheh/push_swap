@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:35:30 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 11:51:40 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:40:33 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	swap_last_two(t_node	**head)
 	if (!head || !(*head) || !(*head)->next)
 	{
 		printf("stack is empty\n");
-		exit(0);
+		exit(1);
 	}
 	t_node		*first;
 	t_node		*second_one;
@@ -57,7 +57,7 @@ void	push_to_node(t_node	**stack1, t_node	**stack2)
 	if (!stack1 || !(*stack1))
 	{
 		printf("cannot push, stack is empty\n");
-		exit(0);
+		exit(1);
 	}
 
 	temp = *stack1;

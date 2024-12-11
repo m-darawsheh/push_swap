@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:50:52 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 12:36:14 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:05:13 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ bool	is_sorted_a(t_node *node)
 	{
 		if (temp->data > temp->next->data)
 		{
-			printf("the list is not sorted\n");
+			// printf("the list is not sorted\n");
 			return (false);
 		}
 		temp = temp->next;
 	}
-	printf("the list is sorted\n");
+	// printf("the list is sorted\n");
 	return (true);
 }
 
