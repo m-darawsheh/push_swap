@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:51:24 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 11:57:03 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:12:48 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	find_index(t_node *node, int data)
 		node = node->next;
 		i++;
 	}
-	printf("error input dataaa\n");
+	write(2, "error input data\n", 17);
 	return (-1);
 }
 

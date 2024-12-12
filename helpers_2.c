@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:51:21 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 12:39:39 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:53:08 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	calc_rotation(int length, int index)
 	return (index);
 }
 
-int	calc_reverse_rotation(int length, int index)
+int	calc_rr(int length, int index)
 {
 	if (index == 0)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:52:05 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 12:12:25 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:54:11 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	find_numberes(t_node *temp, t_node *a, t_node *b, int data)
 	len = node_len(b);
 	index = find_index(b, data);
 	x.rotation = calc_rotation(len, index);
-	x.reverse_rotation = calc_reverse_rotation(len, index);
+	x.reverse_rotation = calc_rr(len, index);
 	if (x.rotation < x.reverse_rotation)
 		x.for_right_place = x.rotation;
 	else
@@ -29,7 +29,7 @@ int	find_numberes(t_node *temp, t_node *a, t_node *b, int data)
 	len = node_len(a);
 	index = find_index(a, temp->data);
 	x.rotation_a = calc_rotation(len, index);
-	x.reverse_rotation_a = calc_reverse_rotation(len, index);
+	x.reverse_rotation_a = calc_rr(len, index);
 	if (x.rotation_a < x.reverse_rotation_a)
 		x.for_top = x.rotation_a;
 	else
@@ -41,8 +41,8 @@ int	find_numberes(t_node *temp, t_node *a, t_node *b, int data)
 t_node	*winner_node(t_node	*a, t_node	*b)
 {
 	int			min_opration;
-	int					x;
-	int				data;
+	int			data;
+	int			x;
 	t_node		*winner;
 	t_node		*temp;
 

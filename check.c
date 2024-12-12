@@ -6,13 +6,13 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:41 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 15:39:50 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:33:24 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_if_max_min(int argc, char *argv[],t_node **head)
+void	check_if_max_min(int argc, char *argv[], t_node **head)
 {
 	int	i;
 
@@ -21,21 +21,21 @@ void	check_if_max_min(int argc, char *argv[],t_node **head)
 	{
 		if (my_strlen(argv[i]) > 10)
 		{
-			printf("ERROR max or min!\n");
+			write(2, "Error\n", 6);
 			free_protection(head);
-			exit(1);
+			exit(2);
 		}
 		if (my_atoi(argv[i]) > 2147483647 || my_atoi(argv[i]) < -2147483648)
 		{
-			printf("ERROR max or min!\n");
+			write(2, "Error\n", 6);
 			free_protection(head);
-			exit(1);
+			exit(2);
 		}
 		i++;
 	}
 }
 
-void	check_if_duplicate(int argc, char *argv[],t_node **head)
+void	check_if_duplicate(int argc, char *argv[], t_node **head)
 {
 	int	i;
 	int	j;
@@ -48,9 +48,9 @@ void	check_if_duplicate(int argc, char *argv[],t_node **head)
 		{
 			if (i != j && my_atoi(argv[i]) == my_atoi(argv[j]))
 			{
-				printf("ERROR duplicate!\n");
+				write(2, "Error\n", 6);
 				free_protection(head);
-				exit(1);
+				exit(2);
 			}
 			j++;
 		}
@@ -58,7 +58,7 @@ void	check_if_duplicate(int argc, char *argv[],t_node **head)
 	}
 }
 
-void	check_if_char(int argc, char *argv[],t_node **head)
+void	check_if_char(int argc, char *argv[], t_node **head)
 {
 	int	i;
 
@@ -67,15 +67,15 @@ void	check_if_char(int argc, char *argv[],t_node **head)
 	{
 		if (ft_isalpha_edit(argv[i]))
 		{
-			printf("ERROR char!\n");
+			write(2, "Error\n", 6);
 			free_protection(head);
-			exit(1);
+			exit(2);
 		}
 		i++;
 	}
 }
 
-void	error_sign(int argc, char *argv[],t_node **head)
+void	error_sign(int argc, char *argv[], t_node **head)
 {
 	int	i;
 
@@ -84,9 +84,9 @@ void	error_sign(int argc, char *argv[],t_node **head)
 	{
 		if ((argv[i][0] == '-' || argv[i][0] == '+') && argv[i][1] == '\0')
 		{
-			printf("ERROR only sign!\n");
+			write(2, "Error\n", 6);
 			free_protection(head);
-			exit(1);
+			exit(2);
 		}
 		i++;
 	}

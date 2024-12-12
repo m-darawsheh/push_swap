@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:07:32 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 17:46:25 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:15:41 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ void	double_ra(t_node **a)
 {
 	rotate_node(a);
 	rotate_node(a);
-	printf("ra\n");
-	printf("ra\n");
+	write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
+
 void	double_rra(t_node **a)
 {
 	reverse_rotate_node(a);
 	reverse_rotate_node(a);
-	printf("rra\n");
-	printf("rra\n");
+	write(1, "rra\n", 4);
+	write(1, "rra\n", 4);
 }
 
 void	push_max(t_node **a, t_node **b, t_node *max)
@@ -35,7 +36,7 @@ void	push_max(t_node **a, t_node **b, t_node *max)
 	if (index == 1)
 	{
 		rotate_node(a);
-		printf("ra\n");
+		write(1, "ra\n", 3);
 	}
 	else if (index == 2)
 	{
@@ -48,11 +49,12 @@ void	push_max(t_node **a, t_node **b, t_node *max)
 	else if (index == 4)
 	{
 		reverse_rotate_node(a);
-		printf("rra\n");
+		write(1, "rra\n", 4);
 	}
 	push_to_node(a, b);
-	printf("pb\n");
+	write(1, "pb\n", 3);
 }
+
 void	push_min(t_node **a, t_node **b, t_node *min)
 {
 	int	index;
@@ -61,7 +63,7 @@ void	push_min(t_node **a, t_node **b, t_node *min)
 	if (index == 1)
 	{
 		rotate_node(a);
-		printf("ra\n");
+		write(1, "ra\n", 3);
 	}
 	else if (index == 2)
 	{
@@ -70,10 +72,10 @@ void	push_min(t_node **a, t_node **b, t_node *min)
 	else if (index == 3)
 	{
 		reverse_rotate_node(a);
-		printf("rra\n");
+		write(1, "rra\n", 4);
 	}
 	push_to_node(a, b);
-	printf("pb\n");
+	write(1, "pb\n", 3);
 }
 
 void	m_dr(t_node **a, t_node **b)
@@ -86,12 +88,9 @@ void	m_dr(t_node **a, t_node **b)
 	push_max(a, b, max);
 	push_min(a, b, min);
 	s_kh(a);
-	push_to_node(b, a);
-	push_to_node(b, a);
-	printf("pa\n");
-	printf("pa\n");
+	double_push_a(b, a);
 	rotate_node(a);
-	printf("ra\n");
+	write(1, "ra\n", 3);
 	free_protection(a);
 	free_protection(b);
 	return ;
