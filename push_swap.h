@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:10 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/12 15:38:42 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:05:50 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void		check_if_char(int argc, char *argv[], t_node **head);
 int			ft_isalpha_edit(char *c);
 void		error_sign(int argc, char *argv[], t_node **head);
 void		swap_last_two(t_node **head);
-void		print_node(t_node *node);
 void		delete_first_node(t_node	**node);
 void		push_to_node(t_node **head, t_node **b);
 void		reverse_rotate_node(t_node **node);
@@ -90,4 +89,6 @@ void		double_rra(t_node **a);
 void		double_ra(t_node **a);
 void		double_push_a(t_node **b, t_node **a);
 void		double_push_b(t_node **a, t_node **b);
+void		sort_4(t_node **stack_a, t_node **stack_b);
+void		swap_and_print(t_node **a);
 #endif

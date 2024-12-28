@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:24:01 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/12 16:36:36 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:59:21 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	main(int argc, char **argv)
 		free_protection(&a);
 		return (0);
 	}
+	if (argc == 5)
+		sort_4(&a, &b);
 	algo(&a, &b);
 	free_protection(&a);
 	free_protection(&b);

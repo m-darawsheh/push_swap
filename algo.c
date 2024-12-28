@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:50:28 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/12 16:01:50 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:07:11 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	algo(t_node **a, t_node **b)
 		m_dr(a, b);
 		return ;
 	}
+	if (node_len(*a) == 2)
+		swap_and_print(a);
 	double_push_b(a, b);
 	while (!the_list_is_empty(*a))
 	{

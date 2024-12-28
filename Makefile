@@ -1,4 +1,4 @@
-SRCS		= check.c main.c my_atoi.c parse_arg.c strlen.c free_protection.c ft_add_back.c ft_isalpha_edit.c O_file.c O_f2.c algo.c helpers.c helpers_2.c help_algo.c winner.c right_places.c sort_five.c
+SRCS		= check.c main.c my_atoi.c parse_arg.c strlen.c free_protection.c ft_add_back.c ft_isalpha_edit.c O_file.c O_f2.c algo.c helpers.c helpers_2.c help_algo.c winner.c right_places.c sort_five.c sort_4.c
 
 OBJS		= $(SRCS:.c=.o)
 
