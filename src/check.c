@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:23:41 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 14:45:12 by ataher           ###   ########.fr       */
+/*   Created: 2025/01/04 10:19:39 by ataher            #+#    #+#             */
+/*   Updated: 2025/01/04 10:20:57 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 bool	check_rubbish_sign(const char *nptr)
 {

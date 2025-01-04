@@ -1,41 +1,47 @@
-SRCS		= main.c check.c parse_arg.c my_atoi.c ft_isalpha_edit.c strlen.c algo.c
+NAME			= $(BUILD_PATH)/push_swap
+CC				= cc
+CFLAGS			= -Wall -Wextra -Werror
+BUILD_PATH		?= ./build
 
-OBJS		= $(SRCS:%.c=obj/%.o)
+DEPENDENCIES		= libft libtrue libftprintf
+DEPENDENCIES_DIR	= ./dependencies
+DEPENDENCIES_FLAGS	= $(foreach lib,$(DEPENDENCIES),-L$(BUILD_PATH)/$(lib)) \
+						$(foreach lib,$(patsubst lib%,%, $(DEPENDENCIES)),-l$(lib))
+INCLUDE_FLAGS		= -Iinclude $(foreach lib,$(DEPENDENCIES),-Iinclude/$(lib))
 
+SRCS			= src/strlen.c src/parse_arg.c \
+					src/my_atoi.c src/main.c \
+					src/ft_isalpha_edit.c src/check.c src/algo.c
+OBJS			= $(SRCS:src/%.c=$(BUILD_PATH)/obj/%.o)
 
-CC			= cc
-CFLAGS		=
-NAME		= push_swap
+all: $(NAME)
 
+$(NAME): $(OBJS) $(foreach lib,$(DEPENDENCIES),$(BUILD_PATH)/$(lib)/$(lib).a)
+	$(CC) $(CFLAGS) $(OBJS) $(DEPENDENCIES_FLAGS) $(INCLUDE_FLAGS) -o $(NAME)
 
-all: libft libtrue $(NAME)
+$(foreach lib,$(DEPENDENCIES),$(BUILD_PATH)/$(lib)/$(lib).a):
+	$(MAKE) -C $(DEPENDENCIES_DIR)/$(basename $(@F)) BUILD_PATH=../../$(BUILD_PATH)/$(basename $(@F)) all
 
-libtrue:
-	make -C ./libtrue
-
-libft:
-	make -C ./libft
-
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -Llibtrue -ltrue -Llibft -lft
-
-obj/%.o: %.c
-	mkdir -p obj
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(BUILD_PATH)/obj/%.o: src/%.c
+	@mkdir -p $(BUILD_PATH)/obj
+	$(CC) $(CFLAGS) $(DEPENDENCIES_FLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
 clean:
-	make -C ./libft clean
-	make -C ./libtrue clean
-	rm -rf obj
+	@rm -rf $(BUILD_PATH)/obj
+	@rm -rf $(BUILD_PATH)/lib*/obj
+
+copy_include:
+	@for lib in $(DEPENDENCIES); do \
+		rm -rf include/$$lib; \
+		mkdir -p include/$$lib; \
+		cp $(DEPENDENCIES_DIR)/$$lib/include/* include/$$lib/; \
+		echo "#include \"$$lib/$$lib.h\"" >> include/header.h; \
+	done
 
 fclean: clean
-	make -C ./libft fclean
-	make -C ./libtrue fclean
-	rm -f $(NAME)
+	@rm -rf $(NAME)
+	@rm -rf $(BUILD_PATH)
 
-re: fclean libft libtrue $(NAME)
+re: fclean all
 
-clone:
-	gc -b linked_list git@github.com:AhmedHodiani/libtrue.git
-
-.PHONY: clean fclean all re libtrue libft
+.PHONY: all clean re fclean copy_include

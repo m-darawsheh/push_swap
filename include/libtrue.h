@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha_edit.c                                  :+:      :+:    :+:   */
+/*   libtrue.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:38:27 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/06 10:30:27 by mdarawsh         ###   ########.fr       */
+/*   Created: 2024/11/16 09:09:09 by ataher            #+#    #+#             */
+/*   Updated: 2024/11/16 09:28:13 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef LIBTRUE_H
+# define LIBTRUE_H
 
-int	ft_isalpha_edit(char *c)
-{
-	int	i;
+# ifndef BOOL
+#  define BOOL int
+#  define TRUE 1
+#  define FALSE 0
+# endif
 
-	i = 0;
-	if (c[i] == '-' || c[i] == '+')
-		i++;
-	while (c[i])
-	{
-		if (c[i] > '9' || c[i] < '0')
-			return (1);
-		i++;
-	}
-	return (0);
-}
+#include "true_linked_list.h"
+
+#endif

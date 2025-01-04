@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   my_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamzah <hamzah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:24:08 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/05 22:49:30 by hamzah           ###   ########.fr       */
+/*   Created: 2025/01/04 10:19:20 by ataher            #+#    #+#             */
+/*   Updated: 2025/01/04 10:20:57 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 long	my_atoi(const char *nptr)
 {

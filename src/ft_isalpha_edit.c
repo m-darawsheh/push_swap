@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlen.c                                           :+:      :+:    :+:   */
+/*   ft_isalpha_edit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 18:35:30 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/11/06 11:11:56 by mdarawsh         ###   ########.fr       */
+/*   Created: 2025/01/04 10:19:31 by ataher            #+#    #+#             */
+/*   Updated: 2025/01/04 10:20:57 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-size_t	my_strlen(char *str)
+int	ft_isalpha_edit(char *c)
 {
-	size_t	i;
-	bool is_sign;
-	
-	is_sign = false;
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		i++;
-		is_sign = true;
-	}
-	while (str[i] != '\0')
-		i++;
+	int	i;
 
-	if (is_sign)
+	i = 0;
+	if (c[i] == '-' || c[i] == '+')
+		i++;
+	while (c[i])
 	{
-		return (i - 1);
+		if (c[i] > '9' || c[i] < '0')
+			return (1);
+		i++;
 	}
-	return (i);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:23:10 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 14:42:19 by ataher           ###   ########.fr       */
+/*   Updated: 2025/01/04 10:17:20 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-# include "libft/libft.h"
-# include "libft/ft_printf/include/ft_printf.h"
-# include "libtrue/include/true_linked_list.h"
+# include "libft.h"
+# include "libtrue.h"
+# include "libftprintf.h"
 
 long	my_atoi(const char *nptr);
 

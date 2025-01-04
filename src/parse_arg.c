@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataher <ataher@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:24:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/11 11:21:52 by ataher           ###   ########.fr       */
+/*   Created: 2025/01/04 10:18:44 by ataher            #+#    #+#             */
+/*   Updated: 2025/01/04 10:24:41 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	parse_arg(int argc, char *argv[], t_stack *stack)
 {

@@ -1,4 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/04 10:17:52 by ataher            #+#    #+#             */
+/*   Updated: 2025/01/04 10:25:22 by ataher           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/push_swap.h"
 
 t_node *get_min(t_stack stack)
 {
@@ -232,10 +244,17 @@ void	algo(t_stack *a, t_stack *b)
 	ft_printf("pb\n");
 	ft_printf("pb\n");
 
+	// a->log.simple(*a);
+	// b->log.simple(*b);
+
 	t_node *temp;
 	while ((temp = a->head))
 	{
 		t_cost cost_best = get_best_cost(a, b);
+		// a->log.detailed(*a);
+		// b->log.detailed(*b);
+
+		// print_cost(cost_best);
 		exe_cost(cost_best, a, b);
 
 
