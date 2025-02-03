@@ -7,3 +7,6 @@
 [submodule "dependencies/libftprintf"]
 	path = dependencies/libftprintf
 	url = git@github.com:AhmedHodiani/libftprintf.git
+[submodule "dependencies/libgnl"]
+	path = dependencies/libgnl
+	url = git@github.com:AhmedHodiani/libgnl.git

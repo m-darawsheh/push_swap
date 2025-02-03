@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtrue.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/16 09:09:09 by ataher            #+#    #+#             */
-/*   Updated: 2025/01/20 14:12:39 by ataher           ###   ########.fr       */
+/*   Created: 2025/01/20 16:49:51 by ataher            #+#    #+#             */
+/*   Updated: 2025/01/20 17:01:18 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTRUE_H
-# define LIBTRUE_H
+#include "../include/push_swap.h"
 
-# ifndef BOOL
-#  define BOOL int
-#  define TRUE 1
-#  define FALSE 0
-# endif
-
-# include "true_linked_list.h"
-
-#endif
+void	exit_program(t_stack *a, t_stack *b, void *ptr)
+{
+	if (a)
+		a->clear(a);
+	if (b)
+		b->clear(b);
+	if (ptr)
+		free(ptr);
+	exit(1);
+}

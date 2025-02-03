@@ -6,7 +6,7 @@
 /*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 10:19:39 by ataher            #+#    #+#             */
-/*   Updated: 2025/01/04 10:20:57 by ataher           ###   ########.fr       */
+/*   Updated: 2025/01/22 02:22:21 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ bool	check_rubbish_sign(const char *nptr)
 	return (false);
 }
 
-void	check_if_max_min(int argc, char *argv[])
+void	check_if_max_min(int argc, char *argv[],
+	t_stack *stack_1, t_stack *stack_2)
 {
 	int	i;
 
@@ -39,19 +40,21 @@ void	check_if_max_min(int argc, char *argv[])
 	{
 		if (my_strlen(argv[i]) > 10)
 		{
-			ft_printf("ERROR max or min!\n");
-			exit(0);
+			ft_dprintf(2, "Error\n");
+			exit_program(stack_1, stack_2, NULL);
 		}
-		if (my_atoi(argv[i]) > 2147483647 || my_atoi(argv[i]) < -2147483648)
+		if (my_atoi(argv[i], stack_1, stack_2) > 2147483647
+			|| my_atoi(argv[i], stack_1, stack_2) < -2147483648)
 		{
-			ft_printf("ERROR max or min!\n");
-			exit(0);
+			ft_dprintf(2, "Error\n");
+			exit_program(stack_1, stack_2, NULL);
 		}
 		i++;
 	}
 }
 
-void	check_if_duplicate(int argc, char *argv[])
+void	check_if_duplicate(int argc, char *argv[],
+	t_stack *stack_1, t_stack *stack_2)
 {
 	int	i;
 	int	j;
@@ -62,10 +65,11 @@ void	check_if_duplicate(int argc, char *argv[])
 		j = 1;
 		while (j < argc)
 		{
-			if (i != j && my_atoi(argv[i]) == my_atoi(argv[j]))
+			if (i != j && my_atoi(argv[i], stack_1, stack_2)
+				== my_atoi(argv[j], stack_1, stack_2))
 			{
-				ft_printf("ERROR duplicate!\n");
-				exit(0);
+				ft_dprintf(2, "Error\n");
+				exit_program(stack_1, stack_2, NULL);
 			}
 			j++;
 		}
@@ -73,7 +77,8 @@ void	check_if_duplicate(int argc, char *argv[])
 	}
 }
 
-void	check_if_char(int argc, char *argv[])
+void	check_if_char(int argc, char *argv[],
+	t_stack *stack_1, t_stack *stack_2)
 {
 	int	i;
 
@@ -82,15 +87,14 @@ void	check_if_char(int argc, char *argv[])
 	{
 		if (ft_isalpha_edit(argv[i]))
 		{
-			ft_printf("ERROR char!\n");
-			exit(0);
+			ft_dprintf(2, "Error\n");
+			exit_program(stack_1, stack_2, NULL);
 		}
 		i++;
 	}
 }
 
-
-void	error_sign(int argc, char *argv[])
+void	error_sign(int argc, char *argv[], t_stack *stack_1, t_stack *stack_2)
 {
 	int	i;
 
@@ -99,8 +103,8 @@ void	error_sign(int argc, char *argv[])
 	{
 		if ((argv[i][0] == '-' || argv[i][0] == '+') && argv[i][1] == '\0')
 		{
-			ft_printf("ERROR only sign!\n");
-			exit(0);
+			ft_dprintf(2, "Error\n");
+			exit_program(stack_1, stack_2, NULL);
 		}
 		i++;
 	}

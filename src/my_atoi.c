@@ -6,28 +6,25 @@
 /*   By: ataher <ataher@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 10:19:20 by ataher            #+#    #+#             */
-/*   Updated: 2025/01/04 10:20:57 by ataher           ###   ########.fr       */
+/*   Updated: 2025/01/20 17:09:24 by ataher           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-long	my_atoi(const char *nptr)
+long	my_atoi(const char *nptr, t_stack *stack_1, t_stack *stack_2)
 {
 	int		i;
 	int		sign;
 	long	result;
-	bool	is_rubbish;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	is_rubbish = false;
-	is_rubbish = check_rubbish_sign(nptr);
-	if (is_rubbish)
+	if (check_rubbish_sign(nptr))
 	{
-		printf("ERROR rubbish sign!\n");
-		exit(0);
+		ft_dprintf(2, "Error\n");
+		exit_program(stack_1, stack_2, NULL);
 	}
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
